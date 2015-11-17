@@ -1,0 +1,75 @@
+body {
+	background-color: #60c98f;
+}
+
+
+.sidebar {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 700px;
+    width: 300px;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.5);
+    font-family: "Lato";
+    color: black;
+    text-transform: uppercase;
+    box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+}
+
+.sideclose {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 700px;
+    width: 60px;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.5);
+    font-family: "Lato";
+    color: black;
+    box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+}
+
+.link:link {
+    color: black;
+    text-decoration: none;
+}
+
+.link:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #3C9A5F;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:active {
+    color: #3C9A5F;
+    text-decoration: none;
+}
+
+.sidebar > a {
+	margin-bottom: 50px;
+}
+
+.search {
+	border-radius: 10px;
+}
+
+.space {
+	height: 150px;
+}
+
+.fa-graduation-cap {
+	padding-left: 110px;
+}
+
+.title {
+	padding-left: 80px;
+
+}
