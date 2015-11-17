@@ -1,11 +1,11 @@
 <form ng-submit="userLogin(login.username, login.password)">
   <div class="form-group">
     <label for="email">Email</label>
-    <input class="form-control" id="email" type="email" name="username" ng-model placeholder="Please enter your email address">
+    <input class="form-control" id="email" type="email" name="username" ng-model="login.username" placeholder="Please enter your email address">
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input class="form-control" id="password" type="password" name="password" value="" placeholder="Please enter your password">
+    <input class="form-control" id="password" type="password" name="password" ng-model="login.password" placeholder="Please enter your password">
   </div>
   <input type="submit" name="submit" value="Login">
 </form>

@@ -1,7 +1,7 @@
 app.controller('LoginController', [$scope, $http, function LoginController($scope, $http, UserFactory){
   // var login = this;
 
-  $scope.login = login;
+  $scope.userLogin = login;
 
   function login(username, password){
     UserFactory.login(username, password).then(function success(response){
