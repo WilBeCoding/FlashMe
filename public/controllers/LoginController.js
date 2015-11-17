@@ -13,7 +13,6 @@ app.factory('UserFactory', function UserFactory($http){
 });
 
 app.controller('LoginController', ['$scope', '$http', 'UserFactory', function LoginController($scope, $http, UserFactory){
-  console.log(UserFactory);
 
   $scope.userLogin = logUserIn;
 
@@ -26,7 +25,7 @@ app.controller('LoginController', ['$scope', '$http', 'UserFactory', function Lo
   }
 
   function handleError(response){
-    alert("Error: ", response.data);
+    alert("Invalid Username / Password");
   }
 
 }]);

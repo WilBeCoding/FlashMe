@@ -14,6 +14,12 @@ var app = angular.module('flashcards', ['ui.router'])
 	        	controller: 'LoginController',
 	        	controllerAs: 'login'
 	        })
+					.state('register', {
+						url: '/register',
+						templateUrl: '/partials/register.html',
+						controller: 'RegistrationController',
+						controllerAs: 'register'
+					})
 	        .state('createSubject', {
 	        	url: '/createsubject',
 	          templateUrl: '/partials/createsubject.html',
