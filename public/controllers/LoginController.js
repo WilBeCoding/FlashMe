@@ -1,12 +1,27 @@
-app.controller('LoginController', [$scope, $http, function LoginController($scope, $http, UserFactory){
-  // var login = this;
+app.factory('UserFactory', function UserFactory($http){
+  'use strict';
+  return {
+    login: login
+  };
 
-  $scope.userLogin = login;
+  function login (email, password){
+    return $http.post('/login', {
+      email: email,
+      password: password
+    });
+  }
+});
 
-  function login(username, password){
+app.controller('LoginController', ['$scope', '$http', 'UserFactory', function LoginController($scope, $http, UserFactory){
+  console.log(UserFactory);
+
+  $scope.userLogin = logUserIn;
+
+  function logUserIn(username, password){
     UserFactory.login(username, password).then(function success(response){
+      console.log(response.data);
       $scope.user = response.data.user;
-      alert(response.data.token);
+      localStorage.setItem('token', response.data.token);
     }, handleError);
   }
 
@@ -15,17 +30,3 @@ app.controller('LoginController', [$scope, $http, function LoginController($scop
   }
 
 }]);
-
-app.factory('UserFactory', function UserFactory($http, process.env.API_URL){
-  'use strict';
-  return {
-    login: login
-  };
-
-  function login(username, password){
-    return $http.post(process.env.API_URL + '/login', {
-      username: username,
-      password: password
-    });
-  }
-});
