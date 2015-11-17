@@ -11,7 +11,7 @@ var app = angular.module('flashcards', ['ui.router'])
 	        })
 	        .state('login', {
 	        	url: '/login',
-	        	templateUrl: '/partials/login.html'
+	        	templateUrl: '/partials/login.html',
 	        	controller: 'LoginController',
 	        	controllerAs: 'login'
 	        })

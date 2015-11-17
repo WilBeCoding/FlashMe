@@ -12,6 +12,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="/javascripts/app.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="/controllers/SubjectController.js"></script>
+    <script type="text/javascript" src="/controllers/CardController.js"></script>
   </head>
   <body class="body">
     <div ng-hide= "close" class="sidebar">
@@ -24,10 +26,10 @@
         <a class="link" ui-sref="about"><i class="fa fa-university"></i> About</a>
         <br>
         <br>
-        <a class="link" ui-sref="createSubject"><i class="fa fa-plus"></i> Create New Subject</a>
+        <a class="link" ui-sref="createSubject"><i class="fa fa-plus"></i> New Subject</a>
         <br>
         <br>
-        <a class="link" ui-sref="createCard"><i class="fa fa-plus"></i> Create New Flashcard</a>
+        <a class="link" ui-sref="createCard"><i class="fa fa-plus"></i> New Flashcard</a>
         <br>
         <br>
         <a class="link" ui-sref="study"><i class="fa fa-lightbulb-o"></i> Study Mode</i></a>
@@ -44,6 +46,7 @@
     <div ng-show= "open" class="sideclose">
         <a ng-click= "close=false; open=false" class="link" ui-sref='#'><i class= "fa fa-bars fa-2x"></i></a>
     </div>
+    <div id="content" ui-view></div>
 
 </body>
 </html>
