@@ -45,5 +45,22 @@ router.post('/register', function(req, res, next){
 });
 
 
+router.post('/createcard', function(req, res, next) {
+  // test if new subject or existing for different routes, currently only setup with new subject and hardcoded user
+  pg.connect(process.env.DB_URI, function(err, client, done) {
+    console.log("Body: ", req.body);
+    client.query('SELECT * FROM subjects WHERE name=$1', [req.body.newSubject], function(err, result){
+       client.query('INSERT INTO subjects VALUES (default, (SELECT id FROM users WHERE email=$1), $2)', [ "test@testing.com", req.body.newSubject], function(err, result) {
+         console.log("ERROR: ", err);
+         console.log("RESULT: ", result);
+         done();
+         res.json(result);
+      });
+      
+    })
+    
+  });
+});
+
 
 module.exports = router;
