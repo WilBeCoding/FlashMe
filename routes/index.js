@@ -5,6 +5,11 @@ var jwt = require('jsonwebtoken');
 var pg = require('pg');
 var conString = process.env.DB_URI;
 var bcrypt = require('bcrypt');
+var expressJwt = require('express-jwt');
+
+var app = express();
+
+app.use(expressJwt({ secret: "secret" }).unless({ path: ['/login'] }));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

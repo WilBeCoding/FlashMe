@@ -14,9 +14,6 @@ var app = express();
 
 app.use(cors());
 dotenv.load();
-app.use(expressJwt({
-  secret: process.env.JWT_SECRET
-}).unless({ path: ['/login'] }))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -1,9 +1,5 @@
-var app = angular.module('flashcards', ['ui.router'], function config($httpProvider, $rootScope){
+var app = angular.module('flashcards', ['ui.router'], function config($httpProvider){
 	$httpProvider.interceptors.push('AuthInterceptor');
-  UserFactory.getUser().then(function success(response){
-    console.log(response);
-    $rootScope.user = response.data;
-  })
 });
 
   app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider){
@@ -63,7 +59,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 
   }]);
 
-  app.factory('UserFactory', function UserFactory($http, AuthTokenFactory, $q){
+  app.factory('UserFactory', function UserFactory($http, AuthTokenFactory, $q, $rootScope){
     'use strict';
     return {
       login: login,
@@ -87,7 +83,10 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 
     function getUser(){
       if(AuthTokenFactory.getToken()){
-        return $http.get('/me');
+        return $http.get('/me').then(function success(response){
+          console.log("Response from GET to /me: ", response);
+          $rootScope.user = response;
+        });
       } else {
         return $q.reject({data: "Client has no auth token"});
       }
@@ -133,3 +132,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 		}
 
 	});
+
+  app.run(function(UserFactory){
+    UserFactory.getUser();
+  });
