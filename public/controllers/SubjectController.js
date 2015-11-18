@@ -7,7 +7,7 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 		method: 'GET',
 		url: '/newcard'
 	}).then(function success(response){
-		console.log(response);
+		$scope.subjects = response
 	});
 
 	$scope.addCard = function(){
@@ -16,6 +16,12 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 		$http.post("/newcard", $scope.newCard).then(function success(response){
 			$scope.newCard = {};
 			console.log($scope.newCard)
+			$http({
+				method: 'GET',
+				url: '/newcard'
+			}).then(function success(response){
+				$scope.subjects = response
+			});
 		});
 
 	}

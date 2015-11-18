@@ -136,8 +136,9 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 
 	});
 
-  app.factory('RegistrationFactory', function RegistrationFactory($http, AuthTokenFactory){
+  app.factory('RegistrationFactory', function RegistrationFactory($http, AuthTokenFactory, $window){
     'use strict';
+    var store = $window.localStorage;
     return {
       register: register
     };
@@ -148,6 +149,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
         password: password
       }).then(function success(response){
         AuthTokenFactory.setToken(response.data.token);
+        store.setItem('user', response.data.user);
         return response;
       });
     }
