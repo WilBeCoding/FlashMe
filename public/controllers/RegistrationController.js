@@ -1,20 +1,3 @@
-app.factory('RegistrationFactory', function RegistrationFactory($http, AuthTokenFactory){
-  'use strict';
-  return {
-    register: register
-  };
-
-  function register(email, password){
-    return $http.post('/register', {
-      email: email,
-      password: password
-    }).then(function success(response){
-      AuthTokenFactory.setToken(response.data.token);
-      return response;
-    });
-  }
-});
-
 app.controller('RegistrationController', ['$scope','$http', 'RegistrationFactory', '$rootScope', function($scope, $http, RegistrationFactory, $rootScope){
 
   $scope.registerUser = register;
