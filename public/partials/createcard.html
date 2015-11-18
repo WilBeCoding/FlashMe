@@ -2,33 +2,35 @@
 	<div class="col-md-4"></div>
 	<div class="col-md-5">
 		<div class="space"></div>
-			<div class="white">
+			<div class='pasta'>
+			<div ng-class="open ? 'whiteClosed' : 'whiteOpen'">
 				<div class="row deck">
 					<div class="col-md-8"></div>
 					<div class="col-md-4"></div>
 				</div>
 				<div class="row">
 					<div class="col-md-3"></div>
-					<div class="col-md-9">
-						<form>
-							<!-- <div class='questionCard'>
-								<label>Question</label>
-								<div class="wrap">
-									<textarea ng-model="newCard.question" class="newcard" rows='10' columns='30' maxlength='650'></textarea>
+						<div class="col-md-9">
+							<form>
+								<!-- <div class='questionCard'>
+									<label>Question</label>
+									<div class="wrap">
+										<textarea ng-model="newCard.question" class="newcard" rows='10' columns='30' maxlength='650'></textarea>
+										<br>
+									 <input ng-click="addCard();"type="submit" value="Submit" class='submitCard'>
+									</div>
 									<br>
-								 <input ng-click="addCard();"type="submit" value="Submit" class='submitCard'>
+								</div> -->
+								<div class='answerCard'>
+									<label>Answer</label>
+									<div class='wrap'>
+										<textarea ng-model="newCard.question" class="newcard" rows='10' columns='30' maxlength='650'></textarea>
+										<br>
+										<input ng-click="addCard();"type="submit" value="Submit" class='submitCard'>
+									</div>
 								</div>
-								<br>
-							</div> -->
-							<div class='answerCard'>
-								<label>Answer</label>
-								<div class='wrap'>
-									<textarea ng-model="newCard.question" class="newcard" rows='10' columns='30' maxlength='650'></textarea>
-									<br>
-									<input ng-click="addCard();"type="submit" value="Submit" class='submitCard'>
-								</div>
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
