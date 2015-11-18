@@ -23,7 +23,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 				controllerAs: 'register'
 			})
        .state('createCard', {
-      	url: '/createcard',
+      	url: '/createcard/{id:int}',
         templateUrl: '/partials/createcard.html',
         controller: 'SubjectController'
       })

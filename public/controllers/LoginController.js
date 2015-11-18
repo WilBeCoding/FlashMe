@@ -5,7 +5,7 @@ app.controller('LoginController', ['$scope', '$http', 'UserFactory', '$rootScope
   function logUserIn(email, password){
     UserFactory.login(email, password).then(function success(response){
       $scope.user = response.data.user;
-      $rootScope.user = response.data.user;
+      $rootScope.user = email;
     }, handleError);
   }
 
