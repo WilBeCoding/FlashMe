@@ -62,7 +62,7 @@
 }
 
 .space {
-	height: 150px;
+	height: 100px;
 }
 
 .fa-graduation-cap {
@@ -73,7 +73,6 @@
 	padding-left: 80px;
 
 }
-
 
 .subject {
     background: transparent;
@@ -86,9 +85,49 @@
     color: black;
 }
 
+.deck {
+    margin-bottom: 25px;
+}
+.wrap {
+    word-wrap: break-word;
+    width: 300px;
+}
+
 .white {
     height: 350px;
     width: 583px;
     background-color: #F5F5F5;
     box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.newcard {
+    background: transparent;
+    border: none;
+    border-bottom: 3px dashed black;
+    width: 300px;
+    outline: none;
+    font-size: 20px;
+    color: black;
+}
+
+.ghost-button {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  border: 1px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+}
+
+.ghost-button:hover,
+.ghost-button:active {
+  background-color: #fff;
+  color: #000;
+}
+
+
+.dash-title {
+    text-shadow: ;
 }

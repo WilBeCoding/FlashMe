@@ -2,15 +2,31 @@
 	<div class="col-md-4"></div>
 	<div class="col-md-5">
 		<div class="space"></div>
-<div class="white">
-			<div class="row">
+			<div class="white">
+			<div class="row deck">
 				<div class="col-md-8"></div>
 				<div class="col-md-4">
-					<h2>[Subject]</h2>
-					</div>
+					<h2>{{subject}}</h2>
 				</div>
-			<div class="row">
-				
-
-
+				</div>
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-9">
+						<form>
+							<div class="wrap">
+								<label>Question</label>
+								<input ng-model="newCard.question" class="newcard">
+								<br>
+								<br>
+								<label>Answer</label>
+								<input ng-model="newCard.answer" class="newcard">
+							</div>
+							<br>
+							<input ng-click="addCard();"type="submit" value="Submit">
+						</form>
+					</div>
+					</div>
+		</div>
+	</div>
 </div>
+
