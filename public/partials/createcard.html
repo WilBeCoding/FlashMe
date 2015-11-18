@@ -31,8 +31,34 @@
 								</div>
 							</form>
 						</div>
+					<div class="col-md-9">
+						<form ng-submit="addCard()">
+							<label>Choose an Existing Subject</label>
+							<select ng-model='newCard.subject'>
+								<option ng-repeat= "subject in subjects.data">{{subject.name}}</option>
+							</select>
+							<br> OR
+							<br>
+							<label> Add New Subject</label>
+							<input ng-model= "newCard.newSubject" class="newcard">
+							<div class="wrap">
+								<label>Question</label>
+								<input ng-model="newCard.question" class="newcard">
+								<br>
+								<br>
+								<label>Answer</label>
+								<input ng-model="newCard.answer" class="newcard">
+							</div>
+							<br>
+							<input type="submit" value="Submit">
+						</form>
+>>>>>>> 4bc20c611ac6df38768f8da719d70a278495665d
 					</div>
 				</div>
 			</div>
 	</div>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> 4bc20c611ac6df38768f8da719d70a278495665d
