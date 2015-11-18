@@ -1,8 +1,8 @@
 var app = angular.module('flashcards', ['ui.router'], function config($httpProvider){
-	$httpProvider.interceptors.push('AuthInterceptor');
+  $httpProvider.interceptors.push('AuthInterceptor');
 });
 
-  app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider){
+  app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider){
 
     $stateProvider
       .state('dashboard', {

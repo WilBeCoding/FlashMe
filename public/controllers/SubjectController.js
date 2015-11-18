@@ -8,6 +8,8 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 		url: '/newcard'
 	}).then(function success(response){
 		console.log(response);
+	}, function error(response){
+		console.log(response);
 	});
 
 	$scope.addCard = function(){
