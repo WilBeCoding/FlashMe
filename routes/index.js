@@ -44,6 +44,8 @@ router.post('/register', function(req, res, next){
   });
 });
 
-
+router.get('/me', function(req, res, next){
+  res.send(req.user);
+})
 
 module.exports = router;
