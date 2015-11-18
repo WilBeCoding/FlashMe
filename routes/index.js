@@ -11,17 +11,6 @@ var app = express();
 
 app.use(expressJwt({ secret: "secret" }).unless({ path: ['/login'] }));
 
-router.get('*', function(req, res, next) {
-  res.sendFile('index.html', {
-    root: __dirname + '/../public/'
-  })
-});
-/* GET home page. */
-router.get('*', function(req, res, next) {
-  res.sendFile('index.html', {
-    root: __dirname + '/../public'
-  });
-});
 
 router.post('/login', authenticate, function(req, res, next){
   console.log("Body of the response:", req.body);
@@ -57,21 +46,26 @@ router.post('/register', function(req, res, next){
   });
 });
 
-router.get('/createcard', function(req, res, next){
+router.get('/newcard', function(req, res, next){
+  console.log("Body request in GET to createcard:", req.body);
+  // We need to read the HEADER property 'user'
+  console.log(req.get('user'));
+  var user = req.get('user');
+  // res.send('Heres your data back');
   pg.connect(process.env.DB_URI, function(err, client, done){
-    done();
-    console.log("USER for subject query: ", req.body.user)
-    client.query('SELECT * FROM users WHERE email = $1', [req.body.user], function(err, result){
-      done();
+    // done();
+    console.log("USER for subject query: ", user)
+    client.query('SELECT * FROM users WHERE email = $1', [user], function(err, result){
+      // done();
       client.query('SELECT * FROM subjects WHERE user_id = $1', [result.rows[0].id], function(err, result){
-        done();
+        // done();
         res.json(result);
       })
     })
   })
 })
 
-router.post('/createcard', function(req, res, next) {
+router.post('/newcard', function(req, res, next) {
   // test if new subject or existing for different routes, currently only setup with new subject and hardcoded user
   pg.connect(process.env.DB_URI, function(err, client, done) {
     client.query('SELECT * FROM users WHERE email=$1', [req.body.user], function(err, result){
@@ -95,6 +89,12 @@ router.post('/createcard', function(req, res, next) {
 
 router.get('/me', function(req, res, next){
   res.send(req.user);
+});
+
+router.get('*', function(req, res, next) {
+  res.sendFile('index.html', {
+    root: __dirname + '/../public'
+  });
 });
 
 module.exports = router;

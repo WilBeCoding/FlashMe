@@ -22,8 +22,8 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 				controller: 'RegistrationController',
 				controllerAs: 'register'
 			})
-       .state('createCard', {
-      	url: '/createcard',
+      .state('createCard', {
+        url: '/createcard',
         templateUrl: '/partials/createcard.html',
         controller: 'SubjectController'
       })
@@ -59,7 +59,8 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
     return {
       login: login,
       logout: logout,
-      getUser: getUser
+      getUser: getUser,
+      readUser: readUser
     };
 
     function login (email, password){
@@ -88,6 +89,12 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
         return $q.reject({data: "Client has no auth token"});
       }
     }
+
+    function readUser(){
+      var store = $window.localStorage;
+      var user = store.getItem('user');
+      return user;
+    }
   });
 
 	app.factory('AuthTokenFactory', function AuthTokenFactory($window){
@@ -115,7 +122,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 	app.factory('AuthInterceptor', function AuthInterceptor(AuthTokenFactory){
 		'use strict';
 		return {
-			request: addToken,
+			request: addToken
 		};
 
 		function addToken(config){
