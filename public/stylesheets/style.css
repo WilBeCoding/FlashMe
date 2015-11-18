@@ -90,7 +90,8 @@
 }
 .wrap {
     word-wrap: break-word;
-    width: 300px;
+    width: 400px;
+    margin-left: -30%;
 }
 
 .white {
@@ -101,13 +102,12 @@
 }
 
 .newcard {
-    background: transparent;
-    border: none;
-    border-bottom: 3px dashed black;
-    width: 300px;
-    outline: none;
-    font-size: 20px;
-    color: black;
+  background: transparent;
+  border: none;
+  width: 530px;
+  outline: none;
+  font-size: 20px;
+  color: black;
 }
 
 .ghost-button {
@@ -129,5 +129,29 @@
 
 
 .dash-title {
-    text-shadow: ;
+  text-shadow: ;
+}
+
+textarea{
+  /*text-decoration: underline;*/
+  line-height:30px;
+  font-weight:bold;
+  color:#FF9900;
+  font-size: 20px;
+  resize:none;
+}
+
+form{
+  word-wrap: break-word;
+}
+
+label{
+  padding-left: 17%;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+
+.submitCard {
+  margin-left: 62%;
 }
