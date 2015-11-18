@@ -44,7 +44,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
       })
       .state('logout', {
       	url: '/logout',
-        templateUrl: '/partials/login.html',
+        templateUrl: '/partials/logout.html',
         controller: 'LogoutController'
       })
 
@@ -127,6 +127,24 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 		}
 
 	});
+
+  app.factory('RegistrationFactory', function RegistrationFactory($http, AuthTokenFactory){
+    'use strict';
+    return {
+      register: register
+    };
+
+    function register(email, password){
+      return $http.post('/register', {
+        email: email,
+        password: password
+      }).then(function success(response){
+        AuthTokenFactory.setToken(response.data.token);
+        return response;
+      });
+    }
+  });
+
 
   app.run(function(UserFactory){
     UserFactory.getUser();
