@@ -54,7 +54,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 
   }]);
 
-  app.factory('UserFactory', function UserFactory($http, AuthTokenFactory, $q, $rootScope){
+  app.factory('UserFactory', function UserFactory($http, AuthTokenFactory, $q, $rootScope, $window){
     'use strict';
     return {
       login: login,
@@ -67,7 +67,9 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
         email: email,
         password: password
       }).then(function success(response){
+        var store = $window.localStorage
         AuthTokenFactory.setToken(response.data.token);
+        store.setItem('user', response.data.user);
         return response;
       });
     }
@@ -102,7 +104,6 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 		}
 
 		function setToken(token){
-      console.log("In setToken");
 			if (token){
 				store.setItem(key, token)
       } else {
@@ -143,9 +144,4 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
         return response;
       });
     }
-  });
-
-
-  app.run(function(UserFactory){
-    UserFactory.getUser();
   });

@@ -12,8 +12,10 @@ var app = express();
 app.use(expressJwt({ secret: "secret" }).unless({ path: ['/login'] }));
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('*', function(req, res, next) {
+  res.sendFile('index.html', {
+    root: __dirname + '/../public'
+  });
 });
 
 router.post('/login', authenticate, function(req, res, next){
