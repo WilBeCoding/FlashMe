@@ -1,4 +1,4 @@
-app.factory('RegistrationFactory', function RegistrationFactory($http){
+app.factory('RegistrationFactory', function RegistrationFactory($http, AuthTokenFactory){
   'use strict';
   return {
     register: register
@@ -8,6 +8,9 @@ app.factory('RegistrationFactory', function RegistrationFactory($http){
     return $http.post('/register', {
       email: email,
       password: password
+    }).then(function success(response){
+      AuthTokenFactory.setToken(response.data.token);
+      return response;
     });
   }
 });
