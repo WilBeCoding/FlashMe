@@ -56,7 +56,7 @@ router.post('/createcard', function(req, res, next) {
   pg.connect(process.env.DB_URI, function(err, client, done) {
     console.log("Body: ", req.body);
     client.query('SELECT * FROM subjects WHERE name=$1', [req.body.newSubject], function(err, result){
-      if (err) {alert('Subject already exists')}
+      console.log("Search for subject result: ", result)
        client.query('INSERT INTO subjects VALUES (default, (SELECT id FROM users WHERE email=$1), $2)', [ req.body.user, req.body.newSubject], function(err, result) {
          client.query('INSERT INTO cards VALUES (default, $2, $3, (SELECT id FROM subjects WHERE name=$1), 1)', [req.body.newSubject, req.body.question, req.body.answer], function(err, result){
           console.log('error: ', err)
