@@ -12,8 +12,8 @@ var app = express();
 app.use(expressJwt({ secret: "secret" }).unless({ path: ['/login'] }));
 
 router.get('*', function(req, res, next) {
-  res.sendFile('index.html', { 
-    root: __dirname + '/../public/' 
+  res.sendFile('index.html', {
+    root: __dirname + '/../public/'
   })
 });
 /* GET home page. */
@@ -88,7 +88,7 @@ router.post('/createcard', function(req, res, next) {
 
       })
     })
-    
+
 
   });
 });
