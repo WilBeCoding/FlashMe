@@ -22,7 +22,7 @@ var app = angular.module('flashcards', ['ui.router'])
 	         .state('createCard', {
 	        	url: '/createcard',
 	          templateUrl: '/partials/createcard.html',
-	          controller: 'CardController'
+	          controller: 'SubjectController'
 	        })
 	        .state('about', {
 	        	url: '/about',
