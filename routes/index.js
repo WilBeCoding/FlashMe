@@ -27,6 +27,7 @@ router.post('/register', function(req, res, next){
   var hash = bcrypt.hashSync(req.body.password, 8);
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query('SELECT * FROM users WHERE email=$1', [req.body.email], function(err, user){
+      console.log("USER: ", user)
       if(user.rows.length === 0){
         client.query('INSERT INTO users VALUES (default, $1, $2)', [req.body.email, hash], function(err, user){
           var token = jwt.sign({
@@ -50,13 +51,17 @@ router.post('/createcard', function(req, res, next) {
   pg.connect(process.env.DB_URI, function(err, client, done) {
     console.log("Body: ", req.body);
     client.query('SELECT * FROM subjects WHERE name=$1', [req.body.newSubject], function(err, result){
-       client.query('INSERT INTO subjects VALUES (default, (SELECT id FROM users WHERE email=$1), $2)', [ "test@testing.com", req.body.newSubject], function(err, result) {
-         console.log("ERROR: ", err);
-         console.log("RESULT: ", result);
-         done();
-         res.json(result);
+      if (err) {alert('Subject already exists')}
+       client.query('INSERT INTO subjects VALUES (default, (SELECT id FROM users WHERE email=$1), $2)', [ req.body.user, req.body.newSubject], function(err, result) {
+         client.query('INSERT INTO cards VALUES (default, $2, $3, (SELECT id FROM subjects WHERE name=$1), 1)', [req.body.newSubject, req.body.question, req.body.answer], function(err, result){
+          console.log('error: ', err) 
+          console.log('result', result);
+          done();
+          res.json(result);
+         })
+         
       });
-      
+
     })
     
   });

@@ -2,7 +2,8 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 	
 
 	$scope.addCard = function(){
-		//http.post to cards table
+		console.log("user:", $rootScope.user)
+		$scope.newCard.user = $rootScope.user;
 		$http.post("/createcard", $scope.newCard);
 		console.log($scope.newCard)
 
