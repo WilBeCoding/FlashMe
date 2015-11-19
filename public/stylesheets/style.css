@@ -127,12 +127,45 @@
   box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
+.hideQuestion{
+  display: none;
+}
 .newcard {
   background: transparent;
-  border: none;
+  border-bottom: none;
   width: 530px;
   outline: none;
   font-size: 20px;
+  color: black;
+}
+
+.selectExistingClassButtons{
+  background-color: orange;
+  width:100%;
+  padding: 5%;
+}
+
+.selectExistingClassButtons button{
+  height:50px;
+  width: 100px;
+}
+
+.newSubjectInput{
+  margin-top:4%;
+}
+
+.selectASubject{
+  margin-top:2%;
+}
+
+.newSubject {
+  background: transparent;
+  border: none;
+  border-bottom: 5px dashed black;
+  width: 500px;
+  outline: none;
+  padding: 0px 0px 0px 0px;
+  font-size: 50px;
   color: black;
 }
 
@@ -145,6 +178,18 @@
   text-align: center;
   outline: none;
   text-decoration: none;
+}
+
+.button {
+/* BUTTON STYLING */
+  border-top: 1px solid #fff;
+  box-shadow: 0 5px 8px #002851, 0 8px 0 #002851, -2px 1px 0 #003872, 2px 1px 0 #003872, 0px 8px 10px #000, 0 10px 30px #1b1b1b;
+  /* FONT STYLING */
+  font: bold 30px 'Trebuchet Ms', helvetica;
+  letter-spacing: 4px;
+  text-decoration: none;
+  text-shadow: -1px -1px 1px #00172e,1px 1px 1px #a1cfff;
+  color: #14467a;
 }
 
 .ghost-button:hover,
@@ -184,6 +229,36 @@ label{
   margin-left: -35%;
   font-size: 25px;
   font-weight: bold;
+}
+
+.createSubjectHeader{
+  background-color:red;
+  text-align: center;
+  width: 100%;
+}
+
+.createSubjectHeader h1{
+  
+}
+
+.subject1 {
+  margin-left: 50%;
+}
+
+.subject2 {
+  margin-left: 10%;
+}
+
+.subject3 {
+  margin-left: 5%;
+}
+
+.subject4 {
+  margin-left: 17%;
+}
+
+.deck label{
+  margin-top: -45%;
 }
 
 .questionOnAnswerPageTutorial{

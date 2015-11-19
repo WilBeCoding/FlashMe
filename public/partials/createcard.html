@@ -1,16 +1,39 @@
 <div class="row">
-	<div class="col-md-4"></div>
-	<div class="col-md-5">
+	<div class="col-md-3"></div>
+	<div class="col-md-6 createSubjectHeader">
+		<h1>New Subject</h1>
+			<form>
+				<input type='text' ng-model= "newCard.newSubject" class="newSubject" maxlength="25" autofocus>
+				<input type='button' value='Create Subject' class='newSubjectInput'>
+				<br>
+				<div class='selectASubject'>
+					<select>
+						<option>Placeholder</option>
+					</select>
+				</div>
 		<div class="space"></div>
-			<div ng-class="open ? 'whiteClosed' : 'whiteOpen'" class='white'>
+				<div class="row deck">
+					<div class="col-md-6"> 
+						<br>
+					</div>
+					<div class="col-md-6"></div>
+				</div>
+				<div class="row">
+				</div>		
 				<div class="row deck">
 					<div class="col-md-8"></div>
 					<div class="col-md-4"></div>
 				</div>
-				<div class="row">
+				<div class='selectExistingClassButtons'>
+					<button type='button' class='button subject1'> Create </button>
+					<button type='button' class='button subject2'> A </button>
+					<button type='button' class='button subject3'> New </button> 
+					<button type='button' class='button subject4'> Subject </button> 
+				</div>
+				<div class="row hideQuestion">
+				<div ng-class="open ? 'whiteClosed' : 'whiteOpen'" class='white'>
 					<div class="col-md-3"></div>
 						<div class="col-md-9">
-							<form>
 								<div class='questionCard' ng-show='!visible'>
 									<label>Question</label>
 									<div class="wrap">
