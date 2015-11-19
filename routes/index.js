@@ -120,6 +120,8 @@ router.post('/subjects', function(req, res, next){
   })  
 })
 
+
+
 router.get('/me', function(req, res, next){
   res.status(200).send("Cool!");
 });

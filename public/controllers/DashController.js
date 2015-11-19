@@ -13,30 +13,18 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 			$scope.subjects.forEach(function(each){
 				each.selected = 'false';
 			})
-			console.log("SCOPE.SUBJECTS", $scope.subjects);
 		}, function error(){
 	    $state.go('login');
 	  });
 
-		$scope.selectSubjects = function(){
-			console.log("SCOPE CONTROLLER DATA:", $scope.subjects);
-			$http({
-				method: 'POST',
-				url: '/subjects',
-				data: {subjects: $scope.subjects}
-			}).then(function success(response){
-				console.log("CONTROLLER RESPONSE:", response)
-			})
-		}
-
   	$scope.selectSubjects = function(){
-  		console.log("SCOPE CONTROLLER DATA:", $scope.subjects);
   		$http({
   			method: 'POST',
   			url: '/subjects',
   			data: {subjects: $scope.subjects}
   		}).then(function success(response){
-  			console.log("CONTROLLER RESPONSE:", response)
+  			console.log("CONTROLLER RESPONSE:", response.data.cards);
+
   		});
   	}
   });
