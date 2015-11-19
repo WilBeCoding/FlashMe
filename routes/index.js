@@ -116,8 +116,9 @@ router.post('/subjects', function(req, res, next){
   })
 });
 
-router.get('/study/:id', function(req, res){
-  console.log("Log in the GET route for /study", req.params.id);
+router.post('/study/', function(req, res){
+  console.log("Log in the POST route for /study", req.body);
+  res.end();
 });
 
 router.get('/me', function(req, res, next){
