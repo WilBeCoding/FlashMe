@@ -2,35 +2,53 @@
 	<div class="col-md-4"></div>
 	<div class="col-md-5">
 		<div class="space"></div>
-			<div class="white">
-			<div class="row deck">
-				<div class="col-md-8"></div>
-				<div class="col-md-4"></div>
-				</div>
-				<div class="row">
-					<div class="col-md-3"></div>
-					<div class="col-md-9">
-						<form ng-submit="addCard()">
-							<label>Choose an Existing Subject</label>
-							<select ng-model='newCard.subject'>
-								<option ng-repeat= "subject in subjects.data">{{subject.name}}</option>
-							</select>
-							<br> OR
-							<br>
-							<label> Add New Subject</label>
-							<input ng-model= "newCard.newSubject" class="newcard">
-							<div class="wrap">
+			<div ng-class="open ? 'whiteClosed' : 'whiteOpen'" class="white">
+				<form>	
+						<div class="row deck">
+							<div class="col-md-6">
+								<label class="smaller">Existing Subject</label>
+								<select ng-model='newCard.subject'>
+										<option ng-repeat= "subject in subjects.data">{{subject.name}}</option>
+								</select>
+							</div>
+							<div class="col-md-6"> 
+										<label ng-click="expandLine()" class="smaller">New Subject</label>
+										<br>
+								</div>
+						</div>
+						<div class="row">
+							<input ng-show="new" ng-model= "newCard.newSubject" class="newcard">
+						</div>
+							
+						<div class="row">
+							<div class='questionCard' ng-show='!visible'>
 								<label>Question</label>
-								<input ng-model="newCard.question" class="newcard">
+								<div class="wrap">
+								<textarea ng-model="newCard.question" class="cardinput" rows='5' columns='30' maxlength='650'></textarea>
 								<br>
-								<br>
-								<label>Answer</label>
-								<input ng-model="newCard.answer" class="newcard">
+								<button ng-click="showAnswer();" class='submitCard'>Flip to Answer</button>
 							</div>
 							<br>
-							<input type="submit" value="Submit">
+						</div>
+					</div>
+						<div class='answerCard' ng-show='visible'>
+								<label>Answer</label>
+								<div class='wrap'>
+								<textarea ng-model="newCard.answer" class="cardinput" rows='5' columns='30' maxlength='650'></textarea>
+								<br>
+							</div>
+							<br>
+							<input ng-click="addCard();" type="submit" value="Submit" class='submitCard'>
+							</div>
+					
 						</form>
 					</div>
+					<div ng-show= "visible" class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<h4>Your Question</h4>
+					<div class='questionOnAnswerPage'>{{newCard.question}}</div>
+				</div>
+				</div>
 					</div>
 		</div>
 	</div>

@@ -1,6 +1,18 @@
 <div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-md-9">
-		<h1 class="dash-title"> [user]'s Dash</h1>
+		<h1 class="dash-title">Dashboard</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-9">
+		<form>
+			<div ng-repeat='subject in subjects.data'>
+				<label><input type="checkbox"> {{subject.name}}</label>
+			</div>
+			
+			<br>
+	</form>
 	</div>
 </div>
