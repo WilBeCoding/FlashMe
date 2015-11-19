@@ -6,6 +6,19 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 		$scope.new = false;
 		$scope.visible = false;
 
+		$http({
+			method: 'GET',
+			url: '/newcard'
+		}).then(function success(response){
+			console.log(response);
+			$scope.subjects = response.data.subjects;
+		}, function error(response){
+			if(response.status === 401){
+				$state.go('login');
+			};
+		});
+
+
 	  $scope.showAnswer = function(){
 	    $scope.visible = (!$scope.visible)? true: false;
 	  };
@@ -18,16 +31,7 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 	  	}
 	  }
 
-		$http({
-			method: 'GET',
-			url: '/newcard'
-		}).then(function success(response){
-			$scope.subjects = response
-		}, function error(response){
-			if(response.status === 401){
-				$state.go('login');
-			};
-		});
+		
 
 		$scope.addCard = function(){
 			console.log('hello')
