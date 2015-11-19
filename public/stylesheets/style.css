@@ -186,12 +186,23 @@ label{
   font-weight: bold;
 }
 
+.questionOnAnswerPageTutorial{
+  height: 142px;
+  width: 583px;
+  margin-left: -13%;
+  font-size: 25px;
+  font-weight: bold;
+}
+
 .submitCard {
   margin-left: 58%;
 }
 
-.class1{
+.submitCardTutorial {
+  margin-left: 48%;
+}
 
+.class1{
   margin-left: 40%;
 }
 

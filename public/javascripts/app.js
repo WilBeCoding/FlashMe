@@ -30,7 +30,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
       .state('about', {
       	url: '/about',
         templateUrl: '/partials/about.html',
-        controller: 'AboutController'
+        controller: 'SubjectController'
       })
       .state('study', {
       	url: '/study',
