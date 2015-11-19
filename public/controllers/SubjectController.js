@@ -1,5 +1,6 @@
-app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope', 'UserFactory', function($scope, $location, $http, $rootScope, UserFactory){
-	console.log("I'm in the SubjectController!");
+app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope', 'UserFactory', '$state', function($scope, $location, $http, $rootScope, UserFactory, $state){
+  UserFactory.getUser();
+
 	var user = UserFactory.readUser();
 	$http.defaults.headers.common.user = user;
 
@@ -8,9 +9,10 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 		url: '/newcard'
 	}).then(function success(response){
 		$scope.subjects = response
-		console.log(response);
 	}, function error(response){
-		console.log(response);
+		if(response.status === 401){
+			$state.go('login');
+		};
 	});
 
 	$scope.addCard = function(){

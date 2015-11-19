@@ -74,7 +74,7 @@ router.post('/newcard', function(req, res, next) {
         })
       })
     })
-    
+
   } else {
     pg.connect(process.env.DB_URI, function(err, client, done) {
       client.query('SELECT * FROM users WHERE email=$1', [req.body.user], function(err, result){
@@ -91,14 +91,14 @@ router.post('/newcard', function(req, res, next) {
       })
     });
   }
-  
 
 
-  
+
+
 });
 
 router.get('/me', function(req, res, next){
-  res.send(req.user);
+  res.status(200).send("Cool!");
 });
 
 router.get('*', function(req, res, next) {
