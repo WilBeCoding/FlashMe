@@ -44,20 +44,29 @@ router.post('/register', function(req, res, next){
 });
 
 router.get('/newcard', function(req, res, next){
-  console.log("Body request in GET to createcard:", req.body);
-  // We need to read the HEADER property 'user'
-  console.log(req.get('user'));
+
   var user = req.get('user');
-  // res.send('Heres your data back');
+
   pg.connect(process.env.DB_URI, function(err, client, done){
-    // done();
-    console.log("USER for subject query: ", user)
+
     client.query('SELECT * FROM users WHERE email = $1', [user], function(err, result){
-      // done();
+
       client.query('SELECT * FROM subjects WHERE user_id = $1', [result.rows[0].id], function(err, result){
-        // done();
-        console.log('subjects result: ', result)
-        res.json(result.rows);
+        var queryString = "SELECT * FROM cards WHERE subject_id IN (";
+        for (var i = 0; i < result.rows.length; i++){
+          if (i === result.rows.length - 1){
+            queryString += result.rows[i].id + ")";
+          } else {
+            queryString += result.rows[i].id + ", ";
+          }
+        }
+        var outputObject = {subjects: result.rows};
+        client.query(queryString, function(err, result){
+          outputObject.cards = result.rows;
+          console.log("PLEEEEASE WORK:", outputObject);
+          res.json(outputObject);
+        })
+
       })
     })
   })
@@ -67,14 +76,15 @@ router.post('/newcard', function(req, res, next) {
   // test if new subject or existing for different routes, currently only setup with new subject and hardcoded user
   if (req.body.subject){
     pg.connect(process.env.DB_URI, function(err, client, done){
-      client.query('SELECT * FROM subjects WHERE name = $1', [req.body.subject], function(err, result){
-        client.query('INSERT INTO cards VALUES (default, $2, $3, (SELECT id FROM subjects WHERE id = $1), 1)', [result.rows[0].id, req.body.question, req.body.answer], function(err, result){
-          done();
-          res.json(result);
+      client.query('SELECT * FROM users WHERE email=$1', [req.body.user], function(err, result){
+        client.query('SELECT * FROM subjects WHERE name = $1 AND user_id=$2', [req.body.subject, result.rows[0].id], function(err, result){
+          client.query('INSERT INTO cards VALUES (default, $2, $3, (SELECT id FROM subjects WHERE id = $1), 1)', [result.rows[0].id, req.body.question, req.body.answer], function(err, result){
+            done();
+            res.json(result);
+          })
         })
       })
     })
-
   } else {
     pg.connect(process.env.DB_URI, function(err, client, done) {
       client.query('SELECT * FROM users WHERE email=$1', [req.body.user], function(err, result){
@@ -103,10 +113,11 @@ router.post('/subjects', function(req, res, next){
   console.log("FILTERED: ", filtered);
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query('SELECT * FROM cards WHERE subject_id = $1', filtered, function(err, result){
-      // console.log("HOPEFULLY THESE ARE CARDS: ", result);
-      res.end();
-    });
-  });
+      var outputObject = {cards: result.rows}
+      console.log("ARE THESE CARDS?", result.rows)
+      res.json(outputObject);
+    })
+  })
 });
 
 router.get('/study/:id', function(req, res){

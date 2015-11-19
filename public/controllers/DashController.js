@@ -1,4 +1,5 @@
 app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 'UserFactory', '$state', function($scope, $location, $http, $rootScope, UserFactory, $state){
+
   UserFactory.getUser().then(function success(){
   	var user = UserFactory.readUser();
   	$http.defaults.headers.common.user = user;
@@ -7,11 +8,11 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 			method: 'GET',
 			url: '/newcard'
 		}).then(function success(response){
-			$scope.subjects = response.data;
+			$scope.subjects = response.data.subjects;
+			$scope.cards = response.data.cards;
 			$scope.subjects.forEach(function(each){
 				each.selected = 'false';
 			})
-			console.log("SCOPE.SUBJECTS", $scope.subjects);
 		}, function error(){
 	    $state.go('login');
 	  });
@@ -35,6 +36,16 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 		// 		console.log("CONTROLLER RESPONSE:", response.data.cards)
 		// 	})
 		// }
-	
+
+  	$scope.selectSubjects = function(){
+  		$http({
+  			method: 'POST',
+  			url: '/subjects',
+  			data: {subjects: $scope.subjects}
+  		}).then(function success(response){
+  			console.log("CONTROLLER RESPONSE:", response.data.cards);
+
+  		});
+  	}
   });
 }]);
