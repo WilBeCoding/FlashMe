@@ -1,5 +1,6 @@
 .body {
-  background-color: #60c98f; }
+  background-color: #60c98f;
+  font-family: 'Lato', sans-serif; }
 
 .dashboardHeaderOpen h1 {
   margin-left: -9%;
@@ -200,9 +201,50 @@ label {
 .center-self {
   align-self: center; }
 
+.flashcard {
+  margin-top: 40px; }
+  .flashcard button {
+    margin-top: 16px; }
+
 .subjectCard {
-  width: 640px;
-  height: 128px;
+  width: 656px;
   background-color: #FAFAFA;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 24px;
+  box-sizing: border-box;
+  height: 128px; }
+
+.cardQuestion {
+  width: 656px;
+  background-color: #FAFAFA;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 24px;
+  box-sizing: border-box;
+  height: 320px;
+  width: 320px;
+  margin-right: 16px; }
+
+.cardAnswer {
+  width: 656px;
+  background-color: #FAFAFA;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 24px;
+  box-sizing: border-box;
+  width: 640px;
+  align-self: center;
+  height: 128px;
+  margin-top: 16px; }
+
+.cardGuess textarea {
+  margin: 0px;
+  width: 320px;
+  height: 320px;
+  padding: 24px;
+  outline: none;
+  box-sizing: border-box;
+  border: none;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }

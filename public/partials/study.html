@@ -1,7 +1,24 @@
 <div class="col-md-6 col-md-offset-3">
   <div class="" ng-repeat="card in cards">
-    <p>
-      {{card.question}}
+    <div class="flashcard flex-col">
+      <div class="flex-row center">
+        <div class="cardQuestion">
+          {{card.question}}
+        </div>
+        <div class="cardGuess">
+          <textarea name="guess" value="" placeholder="Your guess..." ng-model="guess"></textarea>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="button" name="showAnswer" ng-click="showAnswer = true">Show Answer</button>
+      <div class="cardAnswer" ng-show="showAnswer">
+        {{card.answer}}
+      </div>
+      <div class="flex-row center btn-group" ng-show="showAnswer">
+        <button class="btn btn-danger" type="button" name="button" ng-click="reportRating(1)">Again</button>
+        <button class="btn btn-warning" type="button" name="button" ng-click="reportRating(2)">Okay</button>
+        <button class="btn btn-success" type="button" name="button" ng-click="reportRating(3)">I know it</button>
+      </div>
+    </div>
     </p>
   </div>
 </div>
