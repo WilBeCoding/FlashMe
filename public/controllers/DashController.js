@@ -33,7 +33,6 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
   			data: {subjects: subject}
   		}).then(function success(response){
   			console.log("CONTROLLER RESPONSE:", response.data.cards);
-				
   		});
   	}
   });
