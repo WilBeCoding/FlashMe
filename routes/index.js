@@ -91,11 +91,24 @@ router.post('/newcard', function(req, res, next) {
       })
     });
   }
-
-
-
-
 });
+
+router.post('/subjects', function(req, res, next){
+  console.log("SUBJECTS ROUTE REQ:", req.body);
+  var filtered = req.body.subjects.filter(function(each){
+    return each.selected === 'true';
+  }).map(function(each){
+    return each.id;
+  })
+  console.log("FILTERED: ", filtered);
+  pg.connect(process.env.DB_URI, function(err, client, done){
+    client.query('SELECT * FROM cards WHERE subject_id = $1', filtered, function(err, result){
+      console.log("HOPEFULLY THESE ARE CARDS: ", result);
+      res.end();
+    })
+  })
+  
+})
 
 router.get('/me', function(req, res, next){
   res.status(200).send("Cool!");

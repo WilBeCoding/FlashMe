@@ -7,11 +7,11 @@
 <div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-md-9">
-		<form>
-			<div ng-repeat='subject in subjects.data'>
-				<label><input type="checkbox"> {{subject.name}}</label>
+	<form> 
+			<div ng-repeat='subject in subjects'>
+				<label><input type="radio" ng-model="subject.selected" name="subjectSelection" value='true'> {{subject.name}}</label>
 			</div>
-			
+			<input ng-click='selectSubjects();' type='submit' name='submit' value='submit'>
 			<br>
 	</form>
 	</div>
