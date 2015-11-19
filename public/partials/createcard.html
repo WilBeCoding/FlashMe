@@ -16,17 +16,18 @@
 									<div class="wrap">
 										<textarea ng-model="newCard.question" class="newcard" rows='10' columns='30' maxlength='650'></textarea>
 										<br>
-									 <input ng-click="showAnswer();"type="submit" value="Submit" class='submitCard'>
+									 <input ng-click="toggleInputs();"type="submit" value="Submit" class='submitCard'>
 									</div>
 									<br>
 								</div>
 								<div class='answerCard' ng-show='visible'>
 									<label>Answer</label>
 									<div class='wrap'>
-										<textarea ng-model="newCard.question" class="newcard" rows='10' columns='30' maxlength='650'></textarea>
+										<textarea ng-model="newCard.answer" class="newcard" rows='10' columns='30' maxlength='650'></textarea>
 										<br>
-										<input ng-click="addCard();"type="submit" value="Submit" class='submitCard'>
+										<input ng-click="addCard(); toggleInputs()"type="submit" value="Submit" class='submitCard'>
 									</div>
+									<div class='questionOnAnswerPage'>{{newCard.question}}</div>
 								</div>
 							</form>
 						</div>

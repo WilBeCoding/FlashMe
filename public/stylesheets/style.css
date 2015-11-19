@@ -178,13 +178,16 @@ label{
   text-align: center;
 }
 
-.submitCard {
-  margin-left: 58%;
+.questionOnAnswerPage{
+  height: 142px;
+  width: 583px;
+  margin-left: -35%;
+  font-size: 25px;
+  font-weight: bold;
 }
 
-.pasta {
-  position: relative;
-  padding-right: 400px;
+.submitCard {
+  margin-left: 58%;
 }
 
 .class1{
