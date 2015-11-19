@@ -1,7 +1,6 @@
 app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope', function($scope, $location, $http, $rootScope){
 	$scope.visible = false;
   $scope.showAnswer = function(){
-    console.log('ShowAnswer is running');
     $scope.visible = (!$scope.visible)? true: false;
   };
 

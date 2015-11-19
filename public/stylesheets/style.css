@@ -2,13 +2,23 @@
 	background-color: #60c98f;
 }
 
+.dashboardHeaderOpen h1{
+  margin-left: -9%;
+  margin-top: .9%;
+}
+
+.dashboardHeaderClosed h1{
+  margin-left: -26%;
+  margin-top: .9%;
+}
+
 
 .sidebar {
     position: absolute;
     right: 0;
     left: 0;
     height: 100%;
-    width: 300px;
+    width: 208px;
     padding: 10px;
     background-color: rgba(255,255,255,0.5);
     font-family: "Lato";
@@ -66,11 +76,11 @@
 }
 
 .fa-graduation-cap {
-	padding-left: 110px;
+	padding-left: 64px;
 }
 
 .title {
-	padding-left: 80px;
+	padding-left: 29px;
 
 }
 
@@ -102,7 +112,7 @@
 }
 
 .whiteOpen {
-  margin-left: 70%;
+  margin-left: 0%;
   height: 350px;
   width: 583px;
   background-color: #F5F5F5;
@@ -110,7 +120,7 @@
 }
 
 .whiteClosed{
-  margin-left: -120%;
+  margin-left: -17%;
   height: 350px;
   width: 583px;
   background-color: #F5F5F5;
@@ -162,7 +172,7 @@ form{
 }
 
 label{
-  padding-left: 17%;
+  padding-left: 19.5%;
   font-weight: bold;
   font-size: 25px;
   text-align: center;
