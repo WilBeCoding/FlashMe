@@ -109,16 +109,28 @@ router.post('/subjects', function(req, res, next){
   console.log("FILTERED: ", filtered);
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query('SELECT * FROM cards WHERE subject_id = $1', filtered, function(err, result){
-      var outputObject = {cards: result.rows}
+      var cardsArray = result.rows;
+      var m = cardsArray.length, i, t;
+      while (m){
+        i = Math.floor(Math.random() * m--);
+        t = cardsArray[m];
+        cardsArray[m] = cardsArray[i];
+        cardsArray[i] = t;
+      }
+      var outputObject = {cards: cardsArray}
       console.log("ARE THESE CARDS?", result.rows)
       res.json(outputObject);
     })
   })
 });
 
-router.post('/study/', function(req, res){
-  console.log("Log in the POST route for /study", req.body);
-  res.end();
+router.post('/study', function(req, res){
+  console.log("Log in the POST route for /study", req.body.id, req.body.rating);
+  pg.connect(process.env.DB_URI, function(err, client, done){
+    client.query("UPDATE * FROM cards SET rating = $2 WHERE id = $1", [req.body.id, req.body.rating], function(err, result){
+      res.end(); // no need for json since we don't need return data... right?
+    })
+  })
 });
 
 router.get('/me', function(req, res, next){
