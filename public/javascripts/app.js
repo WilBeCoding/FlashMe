@@ -83,7 +83,6 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
       if(AuthTokenFactory.getToken()){
         return $http.get('/me').then(function success(response){
           console.log("Response from GET to /me: ", response);
-          $rootScope.user = response;
         });
       } else {
         return $q.reject({data: "Client has no auth token"});
@@ -95,6 +94,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
       var user = store.getItem('user');
       return user;
     }
+
   });
 
 	app.factory('AuthTokenFactory', function AuthTokenFactory($window){
@@ -115,6 +115,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 				store.setItem(key, token)
       } else {
         store.removeItem(key);
+        store.removeItem('user');
       }
 		}
 	});
@@ -153,4 +154,10 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
         return response;
       });
     }
+  });
+
+  app.run(function(UserFactory){
+    UserFactory.getUser().then(function(response){
+      console.log(response);
+    });
   });
