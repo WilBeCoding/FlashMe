@@ -67,14 +67,15 @@ router.post('/newcard', function(req, res, next) {
   // test if new subject or existing for different routes, currently only setup with new subject and hardcoded user
   if (req.body.subject){
     pg.connect(process.env.DB_URI, function(err, client, done){
-      client.query('SELECT * FROM subjects WHERE name = $1', [req.body.subject], function(err, result){
-        client.query('INSERT INTO cards VALUES (default, $2, $3, (SELECT id FROM subjects WHERE id = $1), 1)', [result.rows[0].id, req.body.question, req.body.answer], function(err, result){
-          done();
-          res.json(result);
+      client.query('SELECT * FROM users WHERE email=$1', [req.body.user], function(err, result){
+        client.query('SELECT * FROM subjects WHERE name = $1 AND user_id=$2', [req.body.subject, result.rows[0].id], function(err, result){
+          client.query('INSERT INTO cards VALUES (default, $2, $3, (SELECT id FROM subjects WHERE id = $1), 1)', [result.rows[0].id, req.body.question, req.body.answer], function(err, result){
+            done();
+            res.json(result);
+          })
         })
       })
     })
-
   } else {
     pg.connect(process.env.DB_URI, function(err, client, done) {
       client.query('SELECT * FROM users WHERE email=$1', [req.body.user], function(err, result){
@@ -103,8 +104,8 @@ router.post('/subjects', function(req, res, next){
   console.log("FILTERED: ", filtered);
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query('SELECT * FROM cards WHERE subject_id = $1', filtered, function(err, result){
-      console.log("HOPEFULLY THESE ARE CARDS: ", result);
-      res.end();
+      var outputObject = {cards: result.rows}
+      res.json(outputObject);
     })
   })
   

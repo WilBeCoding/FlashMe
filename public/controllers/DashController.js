@@ -1,4 +1,5 @@
 app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 'UserFactory', '$state', function($scope, $location, $http, $rootScope, UserFactory, $state){
+
   UserFactory.getUser().then(function success(){
   	var user = UserFactory.readUser();
   	$http.defaults.headers.common.user = user;
