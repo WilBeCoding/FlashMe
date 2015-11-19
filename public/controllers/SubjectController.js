@@ -45,7 +45,7 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 					method: 'GET',
 					url: '/newcard'
 				}).then(function success(response){
-					$scope.subjects = response
+					$scope.subjects = response.data.subjects;
 
 				});
 			});

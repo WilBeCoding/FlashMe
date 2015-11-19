@@ -1,9 +1,9 @@
 <div class="col-md-6 col-md-offset-3">
-  <div class="" ng-repeat="card in cards">
+  <div class="">
     <div class="flashcard flex-col">
       <div class="flex-row center">
         <div class="cardQuestion">
-          {{card.question}}
+          {{cards[0].question}}
         </div>
         <div class="cardGuess">
           <textarea name="guess" value="" placeholder="Your guess..." ng-model="guess"></textarea>
@@ -11,12 +11,12 @@
       </div>
       <button class="btn btn-primary" type="button" name="showAnswer" ng-click="showAnswer = true">Show Answer</button>
       <div class="cardAnswer" ng-show="showAnswer">
-        {{card.answer}}
+        {{cards[0].answer}}
       </div>
       <div class="flex-row center btn-group" ng-show="showAnswer">
-        <button class="btn btn-danger" type="button" name="button" ng-click="reportRating(1)">Again</button>
-        <button class="btn btn-warning" type="button" name="button" ng-click="reportRating(2)">Okay</button>
-        <button class="btn btn-success" type="button" name="button" ng-click="reportRating(3)">I know it</button>
+        <button class="btn btn-danger" type="button" name="button" ng-click="showAnswer = false; reportRating(1, cards[0].id);">Again</button>
+        <button class="btn btn-warning" type="button" name="button" ng-click="showAnswer = false; reportRating(2, cards[0].id);">Okay</button>
+        <button class="btn btn-success" type="button" name="button" ng-click="showAnswer = false; reportRating(3, cards[0].id);">I know it</button>
       </div>
     </div>
     </p>

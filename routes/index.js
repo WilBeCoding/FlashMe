@@ -127,7 +127,7 @@ router.post('/subjects', function(req, res, next){
 router.post('/study', function(req, res){
   console.log("Log in the POST route for /study", req.body.id, req.body.rating);
   pg.connect(process.env.DB_URI, function(err, client, done){
-    client.query("UPDATE * FROM cards SET rating = $2 WHERE id = $1", [req.body.id, req.body.rating], function(err, result){
+    client.query("UPDATE cards SET rating = $2 WHERE id = $1", [req.body.id, req.body.rating], function(err, result){
       res.end(); // no need for json since we don't need return data... right?
     })
   })
