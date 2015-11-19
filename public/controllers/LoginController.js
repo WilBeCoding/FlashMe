@@ -1,11 +1,10 @@
-app.controller('LoginController', ['$scope', '$http', 'UserFactory', '$rootScope', function LoginController($scope, $http, UserFactory, $rootScope){
+app.controller('LoginController', ['$scope', '$http', 'UserFactory', '$rootScope', '$state', function LoginController($scope, $http, UserFactory, $rootScope, $state){
 
   $scope.userLogin = logUserIn;
 
   function logUserIn(email, password){
     UserFactory.login(email, password).then(function success(response){
-      $scope.user = response.data.user;
-      $rootScope.user = email;
+      $state.go('dashboard');
     }, handleError);
   }
 
