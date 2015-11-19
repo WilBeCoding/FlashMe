@@ -1,5 +1,6 @@
 .body {
 	background-color: #60c98f;
+  font-family: 'Lato', sans-serif;
 }
 
 .dashboardHeaderOpen h1{
@@ -260,10 +261,53 @@ label{
 
 // Subject Controller Components
 
-.subjectCard {
-  width: 640px;
-  height: 128px;
+@mixin card {
+  width: 656px;
   background-color: #FAFAFA;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.flashcard  {
+  margin-top: 40px;
+  button {
+    margin-top: 16px;
+  }
+}
+
+
+.subjectCard {
+  @include card;
+  height: 128px;
+}
+
+.cardQuestion {
+  @include card;
+  height: 320px;
+  width: 320px;
+  margin-right: 16px;
+}
+
+.cardAnswer {
+  @include card;
+  width: 640px;
+  align-self: center;
+  height: 128px;
+  margin-top: 16px;
+}
+
+.cardGuess {
+  textarea {
+    margin: 0px;
+    width: 320px;
+    height: 320px;
+    padding: 24px;
+    outline: none;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
 }
