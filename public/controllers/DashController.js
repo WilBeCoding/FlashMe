@@ -17,14 +17,14 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 	    $state.go('login');
 	  });
 
-		// $scope.studyCards = function(subject){
-		// 	$http({
-		// 		method: 'GET',
-		// 		url: '/study/' + subject,
-		// 	}).then(function success(response){
-		// 		console.log("Data from GET to /study", response.data);
-		// 	});
-		// }
+		$scope.studyCards = function(subject){
+			$http({
+				method: 'GET',
+				url: '/study/' + subject,
+			}).then(function success(response){
+				console.log("Data from GET to /study", response.data);
+			});
+		}
 
   	$scope.selectSubjects = function(subject){
   		$http({
@@ -33,7 +33,7 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
   			data: {subjects: subject}
   		}).then(function success(response){
   			console.log("CONTROLLER RESPONSE:", response.data.cards);
-
+				
   		});
   	}
   });

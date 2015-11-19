@@ -105,7 +105,7 @@ router.post('/newcard', function(req, res, next) {
 
 router.post('/subjects', function(req, res, next){
   console.log("SUBJECTS ROUTE REQ:", req.body);
-  var filtered = [req.body.subjects.id];
+  var filtered = [req.body.id];
   console.log("FILTERED: ", filtered);
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query('SELECT * FROM cards WHERE subject_id = $1', filtered, function(err, result){
