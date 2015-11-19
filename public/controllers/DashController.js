@@ -12,9 +12,6 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 			each.selected = 'false';
 		})
 		console.log("SCOPE.SUBJECTS", $scope.subjects);
-	}, function error(response){
-		console.log(response);
-
 	}, function error(){
     $state.go('login');
   });
