@@ -119,6 +119,14 @@
   box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
+.createSubjectOpen{
+  margin-left: 0%;
+  height: 350px;
+  width: 583px;
+  background-color: #F5F5F5;
+  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
 .whiteClosed{
   margin-left: -17%;
   height: 350px;
