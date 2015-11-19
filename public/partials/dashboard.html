@@ -11,6 +11,9 @@
 			<div ng-repeat='subject in subjects'>
 				<label><input type="radio" ng-model="subject.selected" name="subjectSelection" value='true'> {{subject.name}}</label>
 			</div>
+			<div>This is a test:
+				<div ng-repeat='card in cards'>{{card.question}}</div>
+			</div>
 			<input ng-click='selectSubjects();' type='submit' name='submit' value='submit'>
 			<br>
 	</form>

@@ -8,7 +8,8 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 			method: 'GET',
 			url: '/newcard'
 		}).then(function success(response){
-			$scope.subjects = response.data;
+			$scope.subjects = response.data.subjects;
+			$scope.cards = response.data.cards;
 			$scope.subjects.forEach(function(each){
 				each.selected = 'false';
 			})
