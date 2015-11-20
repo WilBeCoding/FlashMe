@@ -26,6 +26,7 @@ router.post('/register', function(req, res, next){
     client.query('SELECT * FROM users WHERE email=$1', [req.body.email], function(err, user){
       if(user.rows.length === 0){
         client.query('INSERT INTO users VALUES (default, $1, $2)', [req.body.email, hash], function(err, user){
+          done();
           var token = jwt.sign({
             username: req.body.email
           }, process.env.JWT_SECRET);
@@ -44,11 +45,15 @@ router.post('/register', function(req, res, next){
 router.get('/newcard', function(req, res, next){
 
   var user = req.get('user');
-
+  
+  console.log("USER BEFORE DB CALL IS MADE:", user);
   pg.connect(process.env.DB_URI, function(err, client, done){
-
+    console.log("USER IN GET NEWCARD DB CALL: ");
+    console.log(user);
     client.query('SELECT * FROM users WHERE email = $1', [user], function(err, result){
+      console.log('RESPONSE FROM GET USER IN DB:', result);
       client.query('SELECT * FROM subjects WHERE user_id = $1', [result.rows[0].id], function(err, result){
+        console.log("RESULT OF GET NEWCARD:", result);
         if(!result.rows.length){
           res.json({noSubjects:true});
         } else {
@@ -66,6 +71,7 @@ router.get('/newcard', function(req, res, next){
               res.json('No Cards Found');
             }
             outputObject.cards = result.rows;
+            done();
             res.json(outputObject);
           });
         }
@@ -122,7 +128,7 @@ router.post('/subjects', function(req, res, next){
       }
 
       var outputObject = {cards: cardsArray};
-
+      done();
       res.json(outputObject);
     })
   })
@@ -130,8 +136,10 @@ router.post('/subjects', function(req, res, next){
 
 router.post('/study', function(req, res){
   pg.connect(process.env.DB_URI, function(err, client, done){
+    console.log('STUDY POST ROUTE ID: ', req.body.id)
     client.query("UPDATE cards SET rating = $2 WHERE id = $1", [req.body.id, req.body.rating], function(err, result){
-      res.end(); // no need for json since we don't need return data... right?
+      done();
+      res.json(result); // no need for json since we don't need return data... right?
     })
   })
 });
@@ -140,6 +148,7 @@ router.post('/cards', function(req, res){
   console.log("Should be the ID of the subject", req.body.subject);
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query("SELECT * FROM cards WHERE subject_id=$1", [req.body.subject], function(err, result){
+      done();
       res.json(result);
     });
   });
@@ -150,6 +159,7 @@ router.post('/reset', function(req, res){
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query("UPDATE cards SET rating = 1 WHERE subject_id = $1", [req.body.subject], function(err, result){
       console.log('RESULT OF RATING RESET:', result)
+      done();
       res.json(result);
     })
   })
