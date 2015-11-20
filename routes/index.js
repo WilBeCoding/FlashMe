@@ -7,7 +7,7 @@ var conString = process.env.DB_URI;
 var bcrypt = require('bcrypt');
 var expressJwt = require('express-jwt');
 
-router.use(expressJwt({ secret: "secret" }).unless({ path: ['/login', '/register'] }));
+router.use(expressJwt({ secret: "secret" }).unless({ path: ['/login', '/register', '/favicon.ico'] }));
 
 router.post('/login', authenticate, function(req, res, next){
   // Passed authentication!
