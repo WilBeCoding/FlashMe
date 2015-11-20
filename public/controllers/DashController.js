@@ -3,7 +3,6 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
   UserFactory.getUser().then(function success(){
   	var user = UserFactory.readUser();
   	$http.defaults.headers.common.user = user;
-
 		$http({
 			method: 'GET',
 			url: '/newcard'
@@ -20,7 +19,7 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
           subject.lows = subject.cards.filter(function(card){
             return card.rating < 3;
           })
-          subject.percent = 100 * (subject.cards.length - subject.lows.length) / subject.cards.length;
+          subject.percent = (100 * (subject.cards.length - subject.lows.length) / subject.cards.length).toFixed(0);
         })
 			}
 		}, function error(){
@@ -42,7 +41,7 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
         url: '/reset',
         data: subject
       }).then(function success(response){
-        
+
       })
     }
 

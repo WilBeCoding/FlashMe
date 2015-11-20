@@ -1,58 +1,31 @@
-<form>
-<div class="row">
-	<div class="col-md-4"></div>
-	<div class="col-md-5">
-			<div class="row deck">
-							<div class="col-md-6">
-								<label class="smaller">Existing Subject</label>
-								<select ng-model='newCard.subject'>
-										<option ng-repeat= "subject in subjects">{{subject.name}}</option>
-								</select>
-							</div>
-							<div class="col-md-6"> 
-										<label ng-click="expandLine()" class="smaller">New Subject</label>
-										<br>
-								</div>
-						<div class="row">
-							<input ng-show="new" ng-model= "newCard.newSubject" class="newcard">
-						</div>
-						</div>
-		<div class="space"></div>
-			<div ng-class="open ? 'whiteClosed' : 'whiteOpen'" class="white">
-					
-					
-						
-							
-						<div class="row">
-							<div class='questionCard' ng-show='!visible'>
-								<label>Question</label>
-								<div class="wrap">
-								<textarea ng-model="newCard.question" class="cardinput" rows='5' columns='30' maxlength='650'></textarea>
-								<br>
-							</div>
-							<br>
-						</div>
-					</div>
-						<div class='answerCard' ng-show='visible'>
-								<label>Answer</label>
-								<div class='wrap'>
-								<textarea ng-model="newCard.answer" class="cardinput" rows='5' columns='30' maxlength='650'></textarea>
-								<br>
-							</div>
-							<br>
-							<input ng-click="addCard();" type="submit" value="Submit" class='submitCard'>
-							</div>
-					
-					
-					</div>
-					<br>
-					<br>
-					<button ng-click="showAnswer();" class='btn btn-primary submitCard'>Flip to Answer</button>
-				
-				</div>
-				</div>
-					</div>
-		</div>
-	</div>
-</div>
-</form>
+<div class="col-md-6 col-md-offset-4">
+  <div class="">
+    <div class="flashcard flex-col">
+      <div class="flex-row center subjectNav">
+
+        <div class="qaCard flex-col center">
+          <label class="smaller">Choose Subject</label>
+          <select ng-model='newCard.subject' class="subjectInput">
+            <option ng-repeat= "subject in subjects">{{subject.name}}</option>
+          </select>
+        </div>
+        <div class="qaCard flex-col center">
+            <label class="smaller">New Subject</label>
+            <input class="subjectInput" ng-model= "newCard.newSubject">
+        </div>
+
+      </div>
+      <div class="flex-row center paper">
+        <div class="cardQ">
+           <h4>Question</h4>
+           <textarea name="question" value="" placeholder="Your question..." ng-model="newCard.question"></textarea>
+        </div>
+        <div class="cardQ">
+          <h4>Answer</h4>
+          <textarea name="answer" value="" placeholder="Your answer..." ng-model="newCard.answer"></textarea>
+        </div>
+      </div>
+       <button class="btn btn-primary" type="button" ng-click="addCard()">Add Card</button>
+      </div>
+      </div>
+    </div>
