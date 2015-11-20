@@ -3,7 +3,6 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
   UserFactory.getUser().then(function success(){
   	var user = UserFactory.readUser();
   	$http.defaults.headers.common.user = user;
-    console.log("USER: ", user);
 		$http({
 			method: 'GET',
 			url: '/newcard'

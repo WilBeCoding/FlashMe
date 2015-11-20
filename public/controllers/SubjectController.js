@@ -7,7 +7,7 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 			method: 'GET',
 			url: '/newcard'
 		}).then(function success(response){
-			console.log(response);
+
 			$scope.subjects = response.data.subjects;
 		}, function error(response){
 			if(response.status === 401){
@@ -16,13 +16,13 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 		});
 		
 		$scope.addCard = function(){
-			console.log($scope.newCard)
+
 			$scope.newCard.user = user;
 			$http.post("/newcard", $scope.newCard).then(function success(response){
-				console.log('goodbye card')
+
 				$scope.newCard = {};
 			
-				console.log($scope.newCard)
+
 				$http({
 					method: 'GET',
 					url: '/newcard'
