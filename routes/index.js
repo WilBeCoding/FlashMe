@@ -48,14 +48,14 @@ router.get('/newcard', function(req, res, next){
 
   var user = req.get('user');
 
-  console.log("USER BEFORE DB CALL IS MADE:", user);
+
   pg.connect(process.env.DB_URI, function(err, client, done){
-    console.log("USER IN GET NEWCARD DB CALL: ");
-    console.log(user);
+
+
     client.query('SELECT * FROM users WHERE email = $1', [user], function(err, result){
-      console.log('RESPONSE FROM GET USER IN DB:', result);
+
       client.query('SELECT * FROM subjects WHERE user_id = $1', [result.rows[0].id], function(err, result){
-        console.log("RESULT OF GET NEWCARD:", result);
+
         if(!result.rows.length){
           res.json({noSubjects:true});
         } else {
@@ -138,7 +138,7 @@ router.post('/subjects', function(req, res, next){
 
 router.post('/study', function(req, res){
   pg.connect(process.env.DB_URI, function(err, client, done){
-    console.log('STUDY POST ROUTE ID: ', req.body.id)
+
     client.query("UPDATE cards SET rating = $2 WHERE id = $1", [req.body.id, req.body.rating], function(err, result){
       done();
       res.json(result); // no need for json since we don't need return data... right?
@@ -147,7 +147,7 @@ router.post('/study', function(req, res){
 });
 
 router.post('/cards', function(req, res){
-  console.log("Should be the ID of the subject", req.body.subject);
+
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query("SELECT * FROM cards WHERE subject_id=$1", [req.body.subject], function(err, result){
       done();
@@ -157,10 +157,10 @@ router.post('/cards', function(req, res){
 });
 
 router.post('/reset', function(req, res){
-  console.log("RESET ROUTE:", req.body);
+
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query("UPDATE cards SET rating = 1 WHERE subject_id = $1", [req.body.subject], function(err, result){
-      console.log('RESULT OF RATING RESET:', result)
+
       done();
       res.json(result);
     })

@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt');
 
 function authenticate(req, res, next){
   var body = req.body;
-  console.log(body);
+
   // Check to see if they username and password were provided...
   if(!body.email || !body.password){
     return res.status(400).end("Must provide username or password");
@@ -20,6 +20,7 @@ function authenticate(req, res, next){
         return res.status(401).end("Username or password incorrect");
       }
       // if it does...
+      done();
       next();
     })
   })
