@@ -6,6 +6,7 @@ var pg = require('pg');
 var conString = process.env.DB_URI;
 var dotenv = require('dotenv');
 var bcrypt = require('bcrypt');
+var dotenv = require('dotenv');
 var expressJwt = require('express-jwt');
 
 dotenv.load();
