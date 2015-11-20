@@ -279,8 +279,10 @@ label {
 
 }
 
+.qaCard {
+    width: 280px;
+}
 
-.cardSubject {
-    background-color: #FAFAFA;
-    width: 560px;
-    ;
+.buggy {
+    padding-left: 400px;
+}

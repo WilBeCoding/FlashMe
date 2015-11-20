@@ -2,16 +2,20 @@
   <div class="">
     <div class="flashcard flex-col">
       <div class="flex-row center">
-        <div class="cardQ">
-          <label class="smaller">Choose Subject</label>
+
+        <div class="qaCard flex-col center">
+          <label class="smaller">Choose Subject
             <select ng-model='newCard.subject'>
               <option ng-repeat= "subject in subjects">{{subject.name}}</option>
             </select>
+          </label>  
         </div>
-        <div class="cardQ">
-            <label ng-click="expandInput()"class="smaller link">New Subject</label>
-            <input ng-show="new" ng-model= "newCard.newSubject">
+        <div class="qaCard flex-col center">
+            <label ng-click="expandInput()" class="smaller link">New Subject
+              <input ng-show="new" ng-model= "newCard.newSubject">
+            </label>
         </div>
+
       </div>
       <div class="flex-row center">
         <div class="cardQ">
