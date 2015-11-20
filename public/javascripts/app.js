@@ -42,11 +42,6 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
         templateUrl: 'partials/study.html',
         controller: 'StudyController'
       })
-      .state('progress', {
-      	url: '/progress',
-        templateUrl: '/partials/progress.html',
-        controller: 'ProgressController'
-      })
       .state('logout', {
       	url: '/logout',
         templateUrl: '/partials/logout.html',
