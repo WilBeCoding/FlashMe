@@ -19,7 +19,7 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
           subject.lows = subject.cards.filter(function(card){
             return card.rating < 3;
           })
-          subject.percent = (100 * (subject.cards.length - subject.lows.length) / subject.cards.length).toFixed(2);
+          subject.percent = (100 * (subject.cards.length - subject.lows.length) / subject.cards.length).toFixed(0);
         })
 			}
 		}, function error(){
