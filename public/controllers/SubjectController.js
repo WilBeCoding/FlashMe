@@ -21,7 +21,7 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 			$http.post("/newcard", $scope.newCard).then(function success(response){
 				console.log('goodbye card')
 				$scope.newCard = {};
-				$scope.new = false;
+			
 				console.log($scope.newCard)
 				$http({
 					method: 'GET',
@@ -38,8 +38,6 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 		$state.go('login');
 	});
 
-	$scope.expandInput = function(){
-		$scope.new = true;
-	}
+	
 
 }])
