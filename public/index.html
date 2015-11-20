@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app='flashcards'>
+  <head>
+    <meta charset="utf-8">
+    <title>Flashcard</title>
+    <link rel="stylesheet" href="./stylesheets/style.css" media="screen" title="no title" charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/javascripts/app.js"></script>
+    <script type="text/javascript" src="/controllers/LoginController.js"></script>
+    <script type="text/javascript" src="/controllers/LogoutController.js"></script>
+    <script type="text/javascript" src="/controllers/RegistrationController.js"></script>
+    <script type="text/javascript" src="/controllers/SubjectController.js"></script>
+    <script type="text/javascript" src="/controllers/DashController.js"></script>
+    <script type="text/javascript" src="/controllers/StudyController.js"></script>
+    <script type="text/javascript" src="/controllers/CardController.js"></script>
+    <base href="/"/>
+  </head>
+  <body class="body">
+    <div ng-hide="close" class="sidebar">
+        <a ng-click= "close=true; open=true" class="link" href='#'><i class= "fa fa-times fa-2x"></i></a>
+        <br>
+         <!--  <i class="fa fa-search"></i>
+          <input class="search"> -->
+        <br>
+        <br>
+        <a class="link" ui-sref="dashboard"><i class="fa fa-heartbeat"></i> Dashboard</a>
+        <br>
+        <br>
+        <a class="link"><i class="fa fa-university"></i> About</a>
+        <br>
+        <br>
+        <a class="link" ui-sref="createCard"><i class="fa fa-plus"></i> New Flashcard</a>
+        <br>
+        <br>
+        <a class="link" ui-sref="progress"><i class="fa fa-tasks"></i> View Progress</a>
+        <br>
+        <br>
+        <a class="link" ui-sref="logout"><i class="fa fa-sign-out"></i> Log Out</a>
+        <div class="space"></div>
+        <h3 class="title">Flash Me</h3>
+        <i class="fa fa-graduation-cap fa-2x"></i>
+    </div>
+    <div ng-show= "open" class="sideclose">
+        <a ng-click= "close=false; open=false" class="link" ui-sref='#'><i class= "fa fa-bars fa-2x"></i></a>
+    </div>
+
+    <ui-view></ui-view>
+
+
+</body>
+</html>

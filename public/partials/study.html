@@ -1,0 +1,27 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="">
+    <div class="flashcard flex-col" ng-show="cards.length > 0">
+      <div class="flex-row center">
+        <div class="cardQuestion">
+          {{cards[0].question}}
+        </div>
+        <div class="cardGuess">
+          <textarea name="guess" value="" placeholder="Your guess..." ng-model="guess"></textarea>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="button" name="showAnswer" ng-click="showAnswer = true">Show Answer</button>
+      <div class="cardAnswer" ng-show="showAnswer">
+        {{cards[0].answer}}
+      </div>
+      <div class="flex-row center btn-group" ng-show="showAnswer">
+        <button class="btn btn-danger" type="button" name="button" ng-click="showAnswer = false; reportRating(1, cards[0].id);">Again</button>
+        <button class="btn btn-warning" type="button" name="button" ng-click="showAnswer = false; reportRating(2, cards[0].id);">Okay</button>
+        <button class="btn btn-success" type="button" name="button" ng-click="showAnswer = false; reportRating(3, cards[0].id);">I know it</button>
+      </div>
+    </div>
+    <div ng-show="cards.length == 0">
+      <h1>Congratulations!  You've completed this subject!</h1>
+      <a class="link" ui-sref="dashboard">Return to dashboard</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="col-md-6 col-md-offset-3">
+  <form ng-submit="registerUser(register.email, register.password)" novalidate="novalidate">
+    <h1 class="page-headers">Register</h1>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input class="form-control" id="email" type="email" name="email" ng-model="register.email" placeholder="Please enter your email address" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input class="form-control" id="password" type="password" name="password" ng-model="register.password" placeholder="Please enter your password" required>
+    </div>
+    <div class="form-group">
+      <label for="passwordConfirm">Confirm Password</label>
+      <input class="form-control" id="passwordConfirm" type="password" name="passwordConfirm" ng-model="register.passwordConfirm" placeholder="Please confirm your password" required>
+    </div>
+    <input class="btn btn-default" type="submit" name="submit" value="Register">
+  </form>
+  <br>
+  <p>
+    Already a user?  You can <a class="btn btn-primary" ui-sref="login">login here</a>
+  </p>
+</div>
