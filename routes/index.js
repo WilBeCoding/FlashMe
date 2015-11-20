@@ -44,12 +44,14 @@ router.post('/register', function(req, res, next){
 });
 
 router.get('/newcard', function(req, res, next){
+  console.log("In the GET to /newcard"); // ✅
 
   var user = req.get('user');
 
   pg.connect(process.env.DB_URI, function(err, client, done){
 
     client.query('SELECT * FROM users WHERE email = $1', [user], function(err, result){
+      console.log("The result from the looking up the user by their email", result);
 
       client.query('SELECT * FROM subjects WHERE user_id = $1', [result.rows[0].id], function(err, result){
         var queryString = "SELECT * FROM cards WHERE subject_id IN (";
@@ -62,8 +64,11 @@ router.get('/newcard', function(req, res, next){
         }
         var outputObject = {subjects: result.rows};
         client.query(queryString, function(err, result){
+          if (err) {
+            console.log("Error in query to DB for cards");
+            res.json('No Cards Found');
+          }
           outputObject.cards = result.rows;
-          console.log("PLEEEEASE WORK:", outputObject);
           res.json(outputObject);
         })
 

@@ -135,7 +135,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 
 	});
 
-  app.factory('RegistrationFactory', function RegistrationFactory($http, AuthTokenFactory, $window){
+  app.factory('RegistrationFactory', function RegistrationFactory($http, AuthTokenFactory, $window, $state){
     'use strict';
     var store = $window.localStorage;
     return {

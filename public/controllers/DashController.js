@@ -8,11 +8,14 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 			method: 'GET',
 			url: '/newcard'
 		}).then(function success(response){
-			$scope.subjects = response.data.subjects;
-			$scope.cards = response.data.cards;
-			$scope.subjects.forEach(function(each){
-				each.selected = 'false';
-			})
+			console.log("Am I getting a response?", response);
+      if (response.data === "No Cards Found") {
+				console.log("no cards found");
+        $state.go('createCard');
+			} else {
+				$scope.subjects = response.data.subjects;
+				$scope.cards = response.data.cards;
+			}
 		}, function error(){
 	    $state.go('login');
 	  });
