@@ -8,9 +8,7 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 			method: 'GET',
 			url: '/newcard'
 		}).then(function success(response){
-			console.log("Am I getting a response?", response);
       if (response.data.noSubjects) {
-				console.log("no cards found");
         $state.go('createCard');
 			} else {
 				$scope.subjects = response.data.subjects;
@@ -25,7 +23,7 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 				method: 'GET',
 				url: '/study/' + subject,
 			}).then(function success(response){
-				console.log("Data from GET to /study", response.data);
+
 			});
 		}
 
@@ -35,7 +33,7 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
   			url: '/subjects',
   			data: {subjects: subject}
   		}).then(function success(response){
-  			console.log("CONTROLLER RESPONSE:", response.data.cards);
+  			
   		});
   	}
   }, function error(response){

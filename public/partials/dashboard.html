@@ -1,11 +1,14 @@
 
-<div class="col-md-6 col-md-offset-3 flex-col center" ng-repeat="subject in subjects">
+<div class="col-md-6 col-md-offset-3 flex-col center allSubjects" ng-repeat="subject in subjects">
   <div class="subjectCard flex-row center">
     <div class="flex-col">
-      <h1>{{subject.name}}</h1>
+      <h1 class="cardTitle">{{subject.name}}</h1>
     </div>
-    <div class="flex-col">
-      <button ui-sref="study({subject: subject.id})" type="button" name="study">Study</button>
+    <div class="flex-col push-right">
+      <div class="btn-group">
+        <button class="btn btn-warning" type="button" name="button" ui-sref="viewcards({subject: subject.id})">View Cards</button>
+        <button class="btn btn-primary" ui-sref="study({subject: subject.id})" type="button" name="study">Study</button>
+      </div>
     </div>
   </div>
 </div>

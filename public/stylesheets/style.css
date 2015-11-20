@@ -201,22 +201,29 @@ label {
 .center-self {
   align-self: center; }
 
+.push-right {
+  margin-left: auto; }
+
 .flashcard {
+  width: 656px;
   margin-top: 40px; }
   .flashcard button {
     margin-top: 16px; }
 
+.allSubjects:first-child {
+  margin-top: 40px; }
+
 .subjectCard {
-  width: 656px;
   background-color: #FAFAFA;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 24px;
   box-sizing: border-box;
-  height: 128px; }
+  width: 512px;
+  height: 128px;
+  margin-bottom: 8px; }
 
 .cardQuestion {
-  width: 656px;
   background-color: #FAFAFA;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -227,7 +234,6 @@ label {
   margin-right: 16px; }
 
 .cardAnswer {
-  width: 656px;
   background-color: #FAFAFA;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -237,6 +243,9 @@ label {
   align-self: center;
   height: 128px;
   margin-top: 16px; }
+
+.cardTitle {
+  margin: 0px; }
 
 .cardGuess textarea {
   margin: 0px;

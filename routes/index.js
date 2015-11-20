@@ -24,7 +24,6 @@ router.post('/register', function(req, res, next){
   var hash = bcrypt.hashSync(req.body.password, 8);
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query('SELECT * FROM users WHERE email=$1', [req.body.email], function(err, user){
-
       if(user.rows.length === 0){
         client.query('INSERT INTO users VALUES (default, $1, $2)', [req.body.email, hash], function(err, user){
           var token = jwt.sign({
@@ -49,11 +48,7 @@ router.get('/newcard', function(req, res, next){
   pg.connect(process.env.DB_URI, function(err, client, done){
 
     client.query('SELECT * FROM users WHERE email = $1', [user], function(err, result){
-
-
       client.query('SELECT * FROM subjects WHERE user_id = $1', [result.rows[0].id], function(err, result){
-
-
         if(!result.rows.length){
           res.json({noSubjects:true});
         } else {
@@ -68,7 +63,6 @@ router.get('/newcard', function(req, res, next){
           var outputObject = {subjects: result.rows};
           client.query(queryString, function(err, result){
             if (err) {
-              console.log("Error in query to DB for cards");
               res.json('No Cards Found');
             }
             outputObject.cards = result.rows;
@@ -113,7 +107,7 @@ router.post('/newcard', function(req, res, next) {
 });
 
 router.post('/subjects', function(req, res, next){
-
+  var filtered = [req.body.id];
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query('SELECT * FROM cards WHERE subject_id = $1', [req.body.id], function(err, result){
       var cardsArray = result.rows.filter(function(each){
@@ -126,7 +120,9 @@ router.post('/subjects', function(req, res, next){
         cardsArray[m] = cardsArray[i];
         cardsArray[i] = t;
       }
+
       var outputObject = {cards: cardsArray};
+
       res.json(outputObject);
     })
   })
@@ -138,6 +134,15 @@ router.post('/study', function(req, res){
       res.end(); // no need for json since we don't need return data... right?
     })
   })
+});
+
+router.post('/cards', function(req, res){
+  console.log("Should be the ID of the subject", req.body.subject);
+  pg.connect(process.env.DB_URI, function(err, client, done){
+    client.query("SELECT * FROM cards WHERE subject_id=$1", [req.body.subject], function(err, result){
+      res.json(result);
+    });
+  });
 });
 
 router.get('/me', function(req, res, next){
