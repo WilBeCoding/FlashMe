@@ -1,172 +1,77 @@
 .body {
-	background-color: #60c98f;
-}
+  background-color: #60c98f;
+  font-family: 'Lato', sans-serif; }
 
-.dashboardHeaderOpen h1{
+.dashboardHeaderOpen h1 {
   margin-left: -9%;
-  margin-top: .9%;
-}
+  margin-top: .9%; }
 
-.dashboardHeaderClosed h1{
+.dashboardHeaderClosed h1 {
   margin-left: -26%;
-  margin-top: .9%;
-}
-
+  margin-top: .9%; }
 
 .sidebar {
-    position: absolute;
-    right: 0;
-    left: 0;
-    height: 100%;
-    width: 208px;
-    padding: 10px;
-    background-color: rgba(255,255,255,0.5);
-    font-family: "Lato";
-    color: black;
-    text-transform: uppercase;
-    box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    font-size: 20px;
-}
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 100%;
+  width: 300px;
+  /*  width: 208px;*/
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-family: "Lato";
+  color: black;
+  text-transform: uppercase;
+  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  font-size: 20px; }
 
 .sideclose {
-    position: absolute;
-    right: 0;
-    left: 0;
-    height: 100%;
-    width: 60px;
-    padding: 10px;
-    background-color: rgba(255,255,255,0.5);
-    font-family: "Lato";
-    color: black;
-    box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    font-size: 20px;
-}
-
-.link{
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 100%;
+  width: 60px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-family: "Lato";
   color: black;
-  text-decoration: none;
-}
+  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  font-size: 20px; }
+
+.link {
+  color: black;
+  text-decoration: none; }
 
 .link:visited {
-    color: black;
-    text-decoration: none;
-}
+  color: black;
+  text-decoration: none; }
 
 .link:hover {
-    color: #3C9A5F;
-    text-decoration: none;
-    font-weight: bold;
-}
+  color: #3C9A5F;
+  text-decoration: none;
+  font-weight: bold; }
 
 .link:active {
-    color: #3C9A5F;
-    text-decoration: none;
-}
+  color: #3C9A5F;
+  text-decoration: none; }
 
 .sidebar > a {
-	margin-bottom: 50px;
-}
+  margin-bottom: 50px; }
 
 .search {
-	border-radius: 10px;
-}
+  border-radius: 10px; }
 
 .space {
-	height: 100px;
-}
+  height: 100px; }
 
 .fa-graduation-cap {
-	padding-left: 64px;
-}
+  /*padding-left: 64px;*/
+  padding-left: 110px; }
 
 .title {
-	padding-left: 29px;
-
-}
+  padding-left: 70px; }
 
 .subject {
-    background: transparent;
-    border: none;
-    border-bottom: 5px dashed black;
-    width: 500px;
-    outline: none;
-    padding: 0px 0px 0px 0px;
-    font-size: 50px;
-    color: black;
-}
-
-.deck {
-    margin-bottom: 25px;
-}
-.wrap {
-    word-wrap: break-word;
-    width: 400px;
-    margin-left: -30%;
-}
-
-.white{
-  -webkit-transition: all .10s linear !important;
-  -moz-transition: all .10s linear !important;
-  -o-transition: all .10s linear !important;
-  transition: all .10s linear !important;
-}
-
-.whiteOpen {
-  margin-left: 0%;
-  height: 350px;
-  width: 583px;
-  background-color: #F5F5F5;
-  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
-}
-
-.createSubjectOpen{
-  margin-left: 33%;
-  height: 350px;
-  width: 583px;
-  background-color: #F5F5F5;
-  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
-}
-
-.whiteClosed{
-  margin-left: -17%;
-  height: 350px;
-  width: 583px;
-  background-color: #F5F5F5;
-  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
-}
-
-.hideQuestion{
-  display: none;
-}
-.newcard {
-  background: transparent;
-  border-bottom: none;
-  width: 530px;
-  outline: none;
-  font-size: 20px;
-  color: black;
-}
-
-.selectExistingClassButtons{
-  background-color: orange;
-  width:100%;
-  padding: 5%;
-}
-
-.selectExistingClassButtons button{
-  height:50px;
-  width: 100px;
-}
-
-.newSubjectInput{
-  margin-top:4%;
-}
-
-.selectASubject{
-  margin-top:2%;
-}
-
-.newSubject {
   background: transparent;
   border: none;
   border-bottom: 5px dashed black;
@@ -174,8 +79,70 @@
   outline: none;
   padding: 0px 0px 0px 0px;
   font-size: 50px;
-  color: black;
+  color: black; }
+
+.deck {
+  margin-bottom: 25px; }
+
+.wrap {
+  word-wrap: break-word;
+  width: 400px;
+  margin-left: -30%; }
+
+.white {
+  -webkit-transition: all .10s linear !important;
+  -moz-transition: all .10s linear !important;
+  -o-transition: all .10s linear !important;
+  transition: all .10s linear !important; }
+
+.whiteOpen {
+  margin-left: 0%;
+  height: 350px;
+  width: 583px;
+  background-color: #F5F5F5;
+  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2); }
+
+<<<<<<< HEAD
+.smaller {
+  font-size: 18px;
+  color: black; }
+=======
+.createSubjectOpen{
+  margin-left: 0%;
+  height: 350px;
+  width: 583px;
+  background-color: #F5F5F5;
+  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
+>>>>>>> parent of 77f583c... Subject creation now moves with sidebar
+
+.whiteClosed {
+  margin-left: -17%;
+  height: 350px;
+  width: 583px;
+  background-color: #F5F5F5;
+  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2); }
+
+.newcard {
+  background: transparent;
+  border: none;
+  border-bottom: 3px dashed black;
+  margin-left: 35px;
+  /*width: 300px;*/
+  width: 530px;
+  outline: none;
+  font-size: 20px;
+  color: black; }
+
+.cardinput {
+  background: transparent;
+  border: none;
+  border-bottom: 3px dashed black;
+  margin-left: 220px;
+  width: 530px;
+  outline: none;
+  font-size: 20px;
+  color: black; }
 
 .ghost-button {
   display: inline-block;
@@ -185,111 +152,109 @@
   border: 1px solid #fff;
   text-align: center;
   outline: none;
-  text-decoration: none;
-}
-
-.button {
-/* BUTTON STYLING */
-  border-top: 1px solid #fff;
-  box-shadow: 0 5px 8px #002851, 0 8px 0 #002851, -2px 1px 0 #003872, 2px 1px 0 #003872, 0px 8px 10px #000, 0 10px 30px #1b1b1b;
-  /* FONT STYLING */
-  font: bold 30px 'Trebuchet Ms', helvetica;
-  letter-spacing: 4px;
-  text-decoration: none;
-  text-shadow: -1px -1px 1px #00172e,1px 1px 1px #a1cfff;
-  color: #14467a;
-}
+  text-decoration: none; }
 
 .ghost-button:hover,
 .ghost-button:active {
   background-color: #fff;
-  color: #000;
-}
+  color: #000; }
 
-
-.dash-title {
-  text-shadow: ;
-}
-
-textarea{
+textarea {
   /*text-decoration: underline;*/
-  line-height:30px;
-  font-weight:bold;
-  color:#FF9900;
+  line-height: 30px;
+  font-weight: bold;
+  color: #FF9900;
   font-size: 20px;
-  resize:none;
-}
+  resize: none; }
 
-form{
-  word-wrap: break-word;
-}
+form {
+  word-wrap: break-word; }
 
-label{
+label {
   padding-left: 19.5%;
   font-weight: bold;
   font-size: 25px;
-  text-align: center;
-}
+  text-align: center; }
 
-.questionOnAnswerPage{
+.submitCard {
+  margin-left: 58%; }
+
+.pasta {
+  position: relative;
+  padding-right: 400px; }
+
+.class1 {
+  margin-left: 40%; }
+
+.questionOnAnswerPage {
   height: 142px;
-  width: 583px;
+  width: 400px;
   margin-left: -35%;
   font-size: 25px;
   font-weight: bold;
-}
+  word-wrap: break-word; }
 
-.createSubjectHeader{
-  background-color:red;
-  text-align: center;
-  width: 100%;
-}
+.class2 {
+  margin-left: 20%; }
 
-.createSubjectHeader h1{
-  
-}
+.flex-col {
+  display: flex;
+  flex-flow: column; }
 
-.subject1 {
-  margin-left: 50%;
-}
+.flex-row {
+  display: flex;
+  flex-flow: row; }
 
-.subject2 {
-  margin-left: 10%;
-}
+.center {
+  align-items: center; }
 
-.subject3 {
-  margin-left: 5%;
-}
+.center-self {
+  align-self: center; }
 
-.subject4 {
-  margin-left: 17%;
-}
+.flashcard {
+  margin-top: 40px; }
+  .flashcard button {
+    margin-top: 16px; }
 
-.deck label{
-  margin-top: -45%;
-}
+.subjectCard {
+  width: 656px;
+  background-color: #FAFAFA;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 24px;
+  box-sizing: border-box;
+  height: 128px; }
 
-.questionOnAnswerPageTutorial{
-  height: 142px;
-  width: 583px;
-  margin-left: -13%;
-  font-size: 25px;
-  font-weight: bold;
-}
+.cardQuestion {
+  width: 656px;
+  background-color: #FAFAFA;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 24px;
+  box-sizing: border-box;
+  height: 320px;
+  width: 320px;
+  margin-right: 16px; }
 
-.submitCard {
-  margin-left: 58%;
-}
+.cardAnswer {
+  width: 656px;
+  background-color: #FAFAFA;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 24px;
+  box-sizing: border-box;
+  width: 640px;
+  align-self: center;
+  height: 128px;
+  margin-top: 16px; }
 
-.submitCardTutorial {
-  margin-left: 48%;
-}
-
-.class1{
-  margin-left: 40%;
-}
-
-.class2{
-  margin-left: 20%;
-}
-
+.cardGuess textarea {
+  margin: 0px;
+  width: 320px;
+  height: 320px;
+  padding: 24px;
+  outline: none;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }

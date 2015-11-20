@@ -1,8 +1,8 @@
 var app = angular.module('flashcards', ['ui.router'], function config($httpProvider){
-	$httpProvider.interceptors.push('AuthInterceptor');
+  $httpProvider.interceptors.push('AuthInterceptor');
 });
 
-  app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider){
+  app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider){
 
     $stateProvider
       .state('dashboard', {
@@ -22,8 +22,8 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 				controller: 'RegistrationController',
 				controllerAs: 'register'
 			})
-       .state('createCard', {
-      	url: '/createcard',
+      .state('createCard', {
+        url: '/createcard',
         templateUrl: '/partials/createcard.html',
         controller: 'SubjectController'
       })
@@ -33,8 +33,8 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
         controller: 'SubjectController'
       })
       .state('study', {
-      	url: '/study',
-        templateUrl: '/partials/study.html',
+        url: '/study/:subject',
+        templateUrl: 'partials/study.html',
         controller: 'StudyController'
       })
       .state('progress', {
@@ -44,7 +44,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
       })
       .state('logout', {
       	url: '/logout',
-        templateUrl: '/partials/login.html',
+        templateUrl: '/partials/logout.html',
         controller: 'LogoutController'
       })
 
@@ -54,11 +54,13 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 
   }]);
 
-  app.factory('UserFactory', function UserFactory($http, AuthTokenFactory){
+  app.factory('UserFactory', function UserFactory($http, AuthTokenFactory, $q, $rootScope, $window){
     'use strict';
     return {
       login: login,
-      logout: logout
+      logout: logout,
+      getUser: getUser,
+      readUser: readUser
     };
 
     function login (email, password){
@@ -66,7 +68,9 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
         email: email,
         password: password
       }).then(function success(response){
+        var store = $window.localStorage
         AuthTokenFactory.setToken(response.data.token);
+        store.setItem('user', response.data.user);
         return response;
       });
     }
@@ -74,6 +78,23 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
     function logout(){
       AuthTokenFactory.setToken();  // Sets token to nothing removing it from localStorage.
     }
+
+    function getUser(){
+      if(AuthTokenFactory.getToken()){
+        return $http.get('/me').then(function success(response){
+          console.log("Response from GET to /me: ", response);
+        });
+      } else {
+        return $q.reject({data: "Client has no auth token"});
+      }
+    }
+
+    function readUser(){
+      var store = $window.localStorage;
+      var user = store.getItem('user');
+      return user;
+    }
+
   });
 
 	app.factory('AuthTokenFactory', function AuthTokenFactory($window){
@@ -90,11 +111,11 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 		}
 
 		function setToken(token){
-      console.log("In setToken");
 			if (token){
 				store.setItem(key, token)
       } else {
         store.removeItem(key);
+        store.removeItem('user');
       }
 		}
 	});
@@ -102,7 +123,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 	app.factory('AuthInterceptor', function AuthInterceptor(AuthTokenFactory){
 		'use strict';
 		return {
-			request: addToken,
+			request: addToken
 		};
 
 		function addToken(config){
@@ -115,3 +136,28 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 		}
 
 	});
+
+  app.factory('RegistrationFactory', function RegistrationFactory($http, AuthTokenFactory, $window){
+    'use strict';
+    var store = $window.localStorage;
+    return {
+      register: register
+    };
+
+    function register(email, password){
+      return $http.post('/register', {
+        email: email,
+        password: password
+      }).then(function success(response){
+        AuthTokenFactory.setToken(response.data.token);
+        store.setItem('user', response.data.user);
+        return response;
+      });
+    }
+  });
+
+  app.run(function(UserFactory){
+    UserFactory.getUser().then(function(response){
+      console.log(response);
+    });
+  });

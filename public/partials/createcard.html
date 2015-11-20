@@ -1,10 +1,11 @@
 <div class="row">
 	<div class="col-md-3"></div>
-	<div class="col-md-6 createSubjectHeader" ng-class="open ? 'createSubjectClosed' : 'createSubjectOpen'">
+	<div class="col-md-6">
+		<div ng-show='!subjectChosen' ng-class="open ? 'createSubjectClosed' : 'createSubjectOpen'"; "subjectChosen ? 'hideSubject' : 'createSubjectHeader'">
 		<h1>New Subject</h1>
 			<form>
 				<input type='text' ng-model= "newCard.newSubject" class="newSubject" maxlength="25" autofocus>
-				<input type='button' value='Create Subject' class='newSubjectInput'>
+				<input type='button' value='Create Subject' class='newSubjectInput' ng-click='subjectChosen = true; showQuestions = true'>
 				<br>
 				<div class='selectASubject'>
 					<select>
@@ -19,18 +20,19 @@
 					<div class="col-md-6"></div>
 				</div>
 				<div class="row">
-				</div>		
+				</div>
 				<div class="row deck">
 					<div class="col-md-8"></div>
 					<div class="col-md-4"></div>
 				</div>
 				<div class='selectExistingClassButtons'>
-					<button type='button' class='button subject1'> Create </button>
-					<button type='button' class='button subject2'> A </button>
-					<button type='button' class='button subject3'> New </button> 
-					<button type='button' class='button subject4'> Subject </button> 
+					<button type='button' class='button subject1' ng-click='toggleSubjectView()'> Create </button>
+					<button type='button' class='button subject2' ng-click='toggleSubjectView()'> A </button>
+					<button type='button' class='button subject3' ng-click='toggleSubjectView()'> New </button> 
+					<button type='button' class='button subject4' ng-click='toggleSubjectView()'> Subject </button> 
 				</div>
-				<div class="row hideQuestion">
+				</div>
+				<div class="row" ng-hide="!showQuestions">
 				<div ng-class="open ? 'whiteClosed' : 'whiteOpen'" class='white'>
 					<div class="col-md-3"></div>
 						<div class="col-md-9">
@@ -39,7 +41,7 @@
 									<div class="wrap">
 										<textarea ng-model="newCard.question" class="newcard" rows='10' columns='30' maxlength='650'></textarea>
 										<br>
-									 <input ng-click="toggleInputs();"type="submit" value="Submit" class='submitCard'>
+										<input ng-click="toggleInputs();"type="submit" value="Submit" class='submitCard'>
 									</div>
 									<br>
 								</div>
