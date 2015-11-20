@@ -81,9 +81,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 
     function getUser(){
       if(AuthTokenFactory.getToken()){
-        return $http.get('/me').then(function success(response){
-          console.log("Response from GET to /me: ", response);
-        });
+        return $http.get('/me');
       } else {
         return $q.reject({data: "Client has no auth token"});
       }
@@ -154,10 +152,4 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
         return response;
       });
     }
-  });
-
-  app.run(function(UserFactory){
-    UserFactory.getUser().then(function(response){
-      console.log(response);
-    });
   });

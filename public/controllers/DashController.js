@@ -35,5 +35,7 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
   			console.log("CONTROLLER RESPONSE:", response.data.cards);
   		});
   	}
+  }, function error(response){
+    $state.go('login');
   });
 }]);
