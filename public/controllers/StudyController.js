@@ -22,6 +22,7 @@ app.controller('StudyController', ['$scope', '$http', '$rootScope', '$location',
         $scope.cards.splice($scope.cards.length - 1, 0, $scope.cards.shift());
       }
     }
+    $scope.guess = "";
     $http({
       method: 'POST',
       url: '/study',
