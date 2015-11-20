@@ -6,11 +6,11 @@ app.controller('StudyController', ['$scope', '$http', '$rootScope', '$location',
     data: {id: id}
   }).then(function success(response){
     $scope.cards = response.data.cards;
-    console.log("CONTROLLER RESPONSE:", response.data.cards);
+
   });
 
   $scope.reportRating = function(rating, id){
-    console.log("FUNCTION FIRED", rating, id);
+
     if (rating === 3){
       $scope.cards.shift();
     } else if (rating === 2){
@@ -28,7 +28,7 @@ app.controller('StudyController', ['$scope', '$http', '$rootScope', '$location',
       url: '/study',
       data: {rating: rating, id: id}
     }).then(function success(response){
-      console.log("UPDATED???");
+
 
     })
   }

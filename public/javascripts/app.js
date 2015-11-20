@@ -32,15 +32,15 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
         templateUrl: '/partials/about.html',
         controller: 'AboutController'
       })
+      .state('viewcards', {
+        url: '/cards/:subject',
+        templateUrl: 'partials/cards.html',
+        controller: 'CardController'
+      })
       .state('study', {
         url: '/study/:subject',
         templateUrl: 'partials/study.html',
         controller: 'StudyController'
-      })
-      .state('progress', {
-      	url: '/progress',
-        templateUrl: '/partials/progress.html',
-        controller: 'ProgressController'
       })
       .state('logout', {
       	url: '/logout',
@@ -135,7 +135,7 @@ var app = angular.module('flashcards', ['ui.router'], function config($httpProvi
 
 	});
 
-  app.factory('RegistrationFactory', function RegistrationFactory($http, AuthTokenFactory, $window){
+  app.factory('RegistrationFactory', function RegistrationFactory($http, AuthTokenFactory, $window, $state){
     'use strict';
     var store = $window.localStorage;
     return {

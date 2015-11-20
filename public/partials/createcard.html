@@ -29,7 +29,6 @@
 								<div class="wrap">
 								<textarea ng-model="newCard.question" class="cardinput" rows='5' columns='30' maxlength='650'></textarea>
 								<br>
-								<button ng-click="showAnswer();" class='submitCard'>Flip to Answer</button>
 							</div>
 							<br>
 						</div>
@@ -46,10 +45,10 @@
 					
 					
 					</div>
-					<div ng-show= "visible" class="row">
-						<div class="col-md-4 col-md-offset-4">
-							<h4>Your Question</h4>
-					<div class='questionOnAnswerPage'>{{newCard.question}}</div>
+					<br>
+					<br>
+					<button ng-click="showAnswer();" class='btn btn-primary submitCard'>Flip to Answer</button>
+				
 				</div>
 				</div>
 					</div>

@@ -8,11 +8,21 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 			method: 'GET',
 			url: '/newcard'
 		}).then(function success(response){
-			$scope.subjects = response.data.subjects;
-			$scope.cards = response.data.cards;
-			$scope.subjects.forEach(function(each){
-				each.selected = 'false';
-			})
+      if (response.data.noSubjects) {
+        $state.go('createCard');
+			} else {
+				$scope.subjects = response.data.subjects;
+				$scope.cards = response.data.cards;
+        $scope.subjects.map(function(subject){
+          subject.cards = $scope.cards.filter(function(card){
+            return card.subject_id === subject.id;
+          })
+          subject.lows = subject.cards.filter(function(card){
+            return card.rating < 3;
+          })
+          subject.percent = 100 * (subject.cards.length - subject.lows.length) / subject.cards.length;
+        })
+			}
 		}, function error(){
 	    $state.go('login');
 	  });
@@ -22,9 +32,19 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 				method: 'GET',
 				url: '/study/' + subject,
 			}).then(function success(response){
-				console.log("Data from GET to /study", response.data);
+
 			});
 		}
+
+    $scope.resetCards = function(subject){
+      $http({
+        method: 'POST',
+        url: '/reset',
+        data: subject
+      }).then(function success(response){
+        
+      })
+    }
 
   	$scope.selectSubjects = function(subject){
   		$http({
@@ -32,7 +52,7 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
   			url: '/subjects',
   			data: {subjects: subject}
   		}).then(function success(response){
-  			console.log("CONTROLLER RESPONSE:", response.data.cards);
+  			
   		});
   	}
   }, function error(response){
