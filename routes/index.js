@@ -54,28 +54,34 @@ router.get('/newcard', function(req, res, next){
       console.log("The result from the looking up the user by their email", result);
 
       client.query('SELECT * FROM subjects WHERE user_id = $1', [result.rows[0].id], function(err, result){
-        var queryString = "SELECT * FROM cards WHERE subject_id IN (";
-        for (var i = 0; i < result.rows.length; i++){
-          if (i === result.rows.length - 1){
-            queryString += result.rows[i].id + ")";
-          } else {
-            queryString += result.rows[i].id + ", ";
-          }
-        }
-        var outputObject = {subjects: result.rows};
-        client.query(queryString, function(err, result){
-          if (err) {
-            console.log("Error in query to DB for cards");
-            res.json('No Cards Found');
-          }
-          outputObject.cards = result.rows;
-          res.json(outputObject);
-        })
+        console.log("This will be the subjects if there are any:", result);
 
-      })
-    })
-  })
-})
+        if(!result.rows.length){
+          res.json({noSubjects:true});
+        } else {
+          var queryString = "SELECT * FROM cards WHERE subject_id IN (";
+          for (var i = 0; i < result.rows.length; i++){
+            if (i === result.rows.length - 1){
+              queryString += result.rows[i].id + ")";
+            } else {
+              queryString += result.rows[i].id + ", ";
+            }
+          }
+          var outputObject = {subjects: result.rows};
+          client.query(queryString, function(err, result){
+            if (err) {
+              console.log("Error in query to DB for cards");
+              res.json('No Cards Found');
+            }
+            outputObject.cards = result.rows;
+            res.json(outputObject);
+          });
+        }
+
+      });
+    });
+  });
+});
 
 router.post('/newcard', function(req, res, next) {
   // test if new subject or existing for different routes, currently only setup with new subject and hardcoded user

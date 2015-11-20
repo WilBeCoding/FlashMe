@@ -9,7 +9,7 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 			url: '/newcard'
 		}).then(function success(response){
 			console.log("Am I getting a response?", response);
-      if (response.data === "No Cards Found") {
+      if (response.data.noSubjects) {
 				console.log("no cards found");
         $state.go('createCard');
 			} else {
