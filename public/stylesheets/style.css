@@ -11,7 +11,7 @@
   margin-top: .9%; }
 
 .sidebar {
-  position: absolute;
+  position: fixed;
   right: 0;
   left: 0;
   height: 100%;
@@ -220,7 +220,8 @@ label {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 24px;
   box-sizing: border-box;
-  width: 512px;
+  width: 640px;
+  margin-left: 64px;
   height: 128px;
   margin-bottom: 8px; }
 
