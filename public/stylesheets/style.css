@@ -260,6 +260,22 @@ label {
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
+.cardQ textarea {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 20px;
+  margin-left: 25px;
+  width: 280px;
+  height: 320px;
+  padding: 24px;
+  outline: none;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+
+
+}
 .display {
     background-color: #FAFAFA;
     width: ;
