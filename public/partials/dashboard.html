@@ -9,6 +9,7 @@
       <div class="btn-group">
         <button class="btn btn-warning" type="button" name="button" ui-sref="viewcards({subject: subject.id})">View Cards</button>
         <button class="btn btn-primary" ui-sref="study({subject: subject.id})" type="button" name="study">Study</button>
+        <button class="btn btn-danger" type="button" name="reset" ng-click="resetCards({subject: subject.id}); subject.percent = 0;">Reset Card ratings</button>
       </div>
     </div>
   </div>

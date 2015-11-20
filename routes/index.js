@@ -145,6 +145,16 @@ router.post('/cards', function(req, res){
   });
 });
 
+router.post('/reset', function(req, res){
+  console.log("RESET ROUTE:", req.body);
+  pg.connect(process.env.DB_URI, function(err, client, done){
+    client.query("UPDATE cards SET rating = 1 WHERE subject_id = $1", [req.body.subject], function(err, result){
+      console.log('RESULT OF RATING RESET:', result)
+      res.json(result);
+    })
+  })
+})
+
 router.get('/me', function(req, res, next){
   res.status(200).send("Cool!");
 });

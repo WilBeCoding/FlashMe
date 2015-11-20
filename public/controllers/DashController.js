@@ -36,6 +36,16 @@ app.controller('DashController', ['$scope', '$location', '$http', '$rootScope', 
 			});
 		}
 
+    $scope.resetCards = function(subject){
+      $http({
+        method: 'POST',
+        url: '/reset',
+        data: subject
+      }).then(function success(response){
+        
+      })
+    }
+
   	$scope.selectSubjects = function(subject){
   		$http({
   			method: 'POST',
