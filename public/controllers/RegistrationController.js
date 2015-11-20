@@ -1,4 +1,4 @@
-app.controller('RegistrationController', ['$scope','$http', 'RegistrationFactory', '$rootScope', function($scope, $http, RegistrationFactory, $rootScope){
+app.controller('RegistrationController', ['$scope','$http', 'RegistrationFactory', '$rootScope', '$state' function($scope, $http, RegistrationFactory, $rootScope, $state){
 
   $scope.registerUser = register;
 
@@ -7,6 +7,7 @@ app.controller('RegistrationController', ['$scope','$http', 'RegistrationFactory
       $rootScope.user = email;
       console.log(response.data); // This is the registration info sent back from the server.
       localStorage.setItem("token", response.data.token);
+      $state.go('dashboard');
     }, handleError);
   }
 
