@@ -1,18 +1,11 @@
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-9">
-		<h1 class="dash-title">Dashboard</h1>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-9">
-		<form>
-			<div ng-repeat='subject in subjects.data'>
-				<label><input type="checkbox"> {{subject.name}}</label>
-			</div>
-			
-			<br>
-	</form>
-	</div>
+
+<div class="col-md-6 col-md-offset-3 flex-col center" ng-repeat="subject in subjects">
+  <div class="subjectCard flex-row">
+    <div class="flex-col">
+      <h1>{{subject.name}}</h1>
+    </div>
+    <div class="flex-col">
+      <button ui-sref="study({subject: subject.id})" type="button" name="study">Study</button>
+    </div>
+  </div>
 </div>

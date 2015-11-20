@@ -1,0 +1,250 @@
+.body {
+  background-color: #60c98f;
+  font-family: 'Lato', sans-serif; }
+
+.dashboardHeaderOpen h1 {
+  margin-left: -9%;
+  margin-top: .9%; }
+
+.dashboardHeaderClosed h1 {
+  margin-left: -26%;
+  margin-top: .9%; }
+
+.sidebar {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 100%;
+  width: 300px;
+  /*  width: 208px;*/
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-family: "Lato";
+  color: black;
+  text-transform: uppercase;
+  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  font-size: 20px; }
+
+.sideclose {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 100%;
+  width: 60px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-family: "Lato";
+  color: black;
+  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  font-size: 20px; }
+
+.link {
+  color: black;
+  text-decoration: none; }
+
+.link:visited {
+  color: black;
+  text-decoration: none; }
+
+.link:hover {
+  color: #3C9A5F;
+  text-decoration: none;
+  font-weight: bold; }
+
+.link:active {
+  color: #3C9A5F;
+  text-decoration: none; }
+
+.sidebar > a {
+  margin-bottom: 50px; }
+
+.search {
+  border-radius: 10px; }
+
+.space {
+  height: 100px; }
+
+.fa-graduation-cap {
+  /*padding-left: 64px;*/
+  padding-left: 110px; }
+
+.title {
+  padding-left: 70px; }
+
+.subject {
+  background: transparent;
+  border: none;
+  border-bottom: 5px dashed black;
+  width: 500px;
+  outline: none;
+  padding: 0px 0px 0px 0px;
+  font-size: 50px;
+  color: black; }
+
+.deck {
+  margin-bottom: 25px; }
+
+.wrap {
+  word-wrap: break-word;
+  width: 400px;
+  margin-left: -30%; }
+
+.white {
+  -webkit-transition: all .10s linear !important;
+  -moz-transition: all .10s linear !important;
+  -o-transition: all .10s linear !important;
+  transition: all .10s linear !important; }
+
+.whiteOpen {
+  margin-left: 0%;
+  height: 350px;
+  width: 583px;
+  background-color: #F5F5F5;
+  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2); }
+
+.smaller {
+  font-size: 18px;
+  color: black; }
+
+.whiteClosed {
+  margin-left: -17%;
+  height: 350px;
+  width: 583px;
+  background-color: #F5F5F5;
+  box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2); }
+
+.newcard {
+  background: transparent;
+  border: none;
+  border-bottom: 3px dashed black;
+  margin-left: 35px;
+  /*width: 300px;*/
+  width: 530px;
+  outline: none;
+  font-size: 20px;
+  color: black; }
+
+.cardinput {
+  background: transparent;
+  border: none;
+  border-bottom: 3px dashed black;
+  margin-left: 220px;
+  width: 530px;
+  outline: none;
+  font-size: 20px;
+  color: black; }
+
+.ghost-button {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  border: 1px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none; }
+
+.ghost-button:hover,
+.ghost-button:active {
+  background-color: #fff;
+  color: #000; }
+
+textarea {
+  /*text-decoration: underline;*/
+  line-height: 30px;
+  font-weight: bold;
+  color: #FF9900;
+  font-size: 20px;
+  resize: none; }
+
+form {
+  word-wrap: break-word; }
+
+label {
+  padding-left: 19.5%;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center; }
+
+.submitCard {
+  margin-left: 58%; }
+
+.pasta {
+  position: relative;
+  padding-right: 400px; }
+
+.class1 {
+  margin-left: 40%; }
+
+.questionOnAnswerPage {
+  height: 142px;
+  width: 400px;
+  margin-left: -35%;
+  font-size: 25px;
+  font-weight: bold;
+  word-wrap: break-word; }
+
+.class2 {
+  margin-left: 20%; }
+
+.flex-col {
+  display: flex;
+  flex-flow: column; }
+
+.flex-row {
+  display: flex;
+  flex-flow: row; }
+
+.center {
+  align-items: center; }
+
+.center-self {
+  align-self: center; }
+
+.flashcard {
+  margin-top: 40px; }
+  .flashcard button {
+    margin-top: 16px; }
+
+.subjectCard {
+  width: 656px;
+  background-color: #FAFAFA;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 24px;
+  box-sizing: border-box;
+  height: 128px; }
+
+.cardQuestion {
+  width: 656px;
+  background-color: #FAFAFA;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 24px;
+  box-sizing: border-box;
+  height: 320px;
+  width: 320px;
+  margin-right: 16px; }
+
+.cardAnswer {
+  width: 656px;
+  background-color: #FAFAFA;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 24px;
+  box-sizing: border-box;
+  width: 640px;
+  align-self: center;
+  height: 128px;
+  margin-top: 16px; }
+
+.cardGuess textarea {
+  margin: 0px;
+  width: 320px;
+  height: 320px;
+  padding: 24px;
+  outline: none;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }

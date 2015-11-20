@@ -1,24 +1,27 @@
+<form>
 <div class="row">
 	<div class="col-md-4"></div>
 	<div class="col-md-5">
-		<div class="space"></div>
-			<div ng-class="open ? 'whiteClosed' : 'whiteOpen'" class="white">
-				<form>	
-						<div class="row deck">
+			<div class="row deck">
 							<div class="col-md-6">
 								<label class="smaller">Existing Subject</label>
 								<select ng-model='newCard.subject'>
-										<option ng-repeat= "subject in subjects.data">{{subject.name}}</option>
+										<option ng-repeat= "subject in subjects">{{subject.name}}</option>
 								</select>
 							</div>
 							<div class="col-md-6"> 
 										<label ng-click="expandLine()" class="smaller">New Subject</label>
 										<br>
 								</div>
-						</div>
 						<div class="row">
 							<input ng-show="new" ng-model= "newCard.newSubject" class="newcard">
 						</div>
+						</div>
+		<div class="space"></div>
+			<div ng-class="open ? 'whiteClosed' : 'whiteOpen'" class="white">
+					
+					
+						
 							
 						<div class="row">
 							<div class='questionCard' ng-show='!visible'>
@@ -41,7 +44,7 @@
 							<input ng-click="addCard();" type="submit" value="Submit" class='submitCard'>
 							</div>
 					
-						</form>
+					
 					</div>
 					<div ng-show= "visible" class="row">
 						<div class="col-md-4 col-md-offset-4">
@@ -53,3 +56,4 @@
 		</div>
 	</div>
 </div>
+</form>

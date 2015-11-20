@@ -44,20 +44,29 @@ router.post('/register', function(req, res, next){
 });
 
 router.get('/newcard', function(req, res, next){
-  console.log("Body request in GET to createcard:", req.body);
-  // We need to read the HEADER property 'user'
-  console.log(req.get('user'));
+
   var user = req.get('user');
-  // res.send('Heres your data back');
+
   pg.connect(process.env.DB_URI, function(err, client, done){
-    // done();
-    console.log("USER for subject query: ", user)
+
     client.query('SELECT * FROM users WHERE email = $1', [user], function(err, result){
-      // done();
+
       client.query('SELECT * FROM subjects WHERE user_id = $1', [result.rows[0].id], function(err, result){
-        // done();
-        console.log('subjects result: ', result)
-        res.json(result.rows);
+        var queryString = "SELECT * FROM cards WHERE subject_id IN (";
+        for (var i = 0; i < result.rows.length; i++){
+          if (i === result.rows.length - 1){
+            queryString += result.rows[i].id + ")";
+          } else {
+            queryString += result.rows[i].id + ", ";
+          }
+        }
+        var outputObject = {subjects: result.rows};
+        client.query(queryString, function(err, result){
+          outputObject.cards = result.rows;
+          console.log("PLEEEEASE WORK:", outputObject);
+          res.json(outputObject);
+        })
+
       })
     })
   })
@@ -67,14 +76,15 @@ router.post('/newcard', function(req, res, next) {
   // test if new subject or existing for different routes, currently only setup with new subject and hardcoded user
   if (req.body.subject){
     pg.connect(process.env.DB_URI, function(err, client, done){
-      client.query('SELECT * FROM subjects WHERE name = $1', [req.body.subject], function(err, result){
-        client.query('INSERT INTO cards VALUES (default, $2, $3, (SELECT id FROM subjects WHERE id = $1), 1)', [result.rows[0].id, req.body.question, req.body.answer], function(err, result){
-          done();
-          res.json(result);
+      client.query('SELECT * FROM users WHERE email=$1', [req.body.user], function(err, result){
+        client.query('SELECT * FROM subjects WHERE name = $1 AND user_id=$2', [req.body.subject, result.rows[0].id], function(err, result){
+          client.query('INSERT INTO cards VALUES (default, $2, $3, (SELECT id FROM subjects WHERE id = $1), 1)', [result.rows[0].id, req.body.question, req.body.answer], function(err, result){
+            done();
+            res.json(result);
+          })
         })
       })
     })
-
   } else {
     pg.connect(process.env.DB_URI, function(err, client, done) {
       client.query('SELECT * FROM users WHERE email=$1', [req.body.user], function(err, result){
@@ -91,10 +101,36 @@ router.post('/newcard', function(req, res, next) {
       })
     });
   }
+});
 
+router.post('/subjects', function(req, res, next){
+  console.log("SUBJECTS ROUTE REQ:", req.body);
+  var filtered = [req.body.id];
+  console.log("FILTERED: ", filtered);
+  pg.connect(process.env.DB_URI, function(err, client, done){
+    client.query('SELECT * FROM cards WHERE subject_id = $1', filtered, function(err, result){
+      var cardsArray = result.rows;
+      var m = cardsArray.length, i, t;
+      while (m){
+        i = Math.floor(Math.random() * m--);
+        t = cardsArray[m];
+        cardsArray[m] = cardsArray[i];
+        cardsArray[i] = t;
+      }
+      var outputObject = {cards: cardsArray}
+      console.log("ARE THESE CARDS?", result.rows)
+      res.json(outputObject);
+    })
+  })
+});
 
-
-
+router.post('/study', function(req, res){
+  console.log("Log in the POST route for /study", req.body.id, req.body.rating);
+  pg.connect(process.env.DB_URI, function(err, client, done){
+    client.query("UPDATE cards SET rating = $2 WHERE id = $1", [req.body.id, req.body.rating], function(err, result){
+      res.end(); // no need for json since we don't need return data... right?
+    })
+  })
 });
 
 router.get('/me', function(req, res, next){
