@@ -7,7 +7,7 @@ var conString = process.env.DB_URI;
 var bcrypt = require('bcrypt');
 var expressJwt = require('express-jwt');
 
-router.use(expressJwt({ secret: "secret" }).unless({ path: ['/login', '/register', '/favicon.ico'] }));
+router.use(expressJwt({ secret: process.env.JWT_TOKEN }).unless({ path: ['/login', '/register', '/favicon.ico'] }));
 
 router.post('/login', authenticate, function(req, res, next){
   // Passed authentication!
@@ -45,7 +45,7 @@ router.post('/register', function(req, res, next){
 router.get('/newcard', function(req, res, next){
 
   var user = req.get('user');
-  
+
   console.log("USER BEFORE DB CALL IS MADE:", user);
   pg.connect(process.env.DB_URI, function(err, client, done){
     console.log("USER IN GET NEWCARD DB CALL: ");
