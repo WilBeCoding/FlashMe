@@ -1,16 +1,33 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-6 col-md-offset-4">
   <div class="">
     <div class="flashcard flex-col">
       <div class="flex-row center">
         <div class="cardQ">
+          <label class="smaller">Choose Subject</label>
+            <select ng-model='newCard.subject'>
+              <option ng-repeat= "subject in subjects">{{subject.name}}</option>
+            </select>
+        </div>
+        <div class="cardQ">
+            <label ng-click="expandInput()"class="smaller link">New Subject</label>
+            <input ng-show="new" ng-model= "newCard.newSubject">
+        </div>
+      </div>
+      <div class="flex-row center">
+        <div class="cardQ">
+           <h4>Question</h4>
            <textarea name="question" value="" placeholder="Your question..." ng-model="newCard.question"></textarea>
         </div>
         <div class="cardQ">
+          <h4>Answer</h4>
           <textarea name="answer" value="" placeholder="Your answer..." ng-model="newCard.answer"></textarea>
         </div>
       </div>
-      <button class="btn btn-primary" type="button" ng-click="addCard()">Add Card</button>
+       <button class="btn btn-primary" type="button" ng-click="addCard()">Add Card</button>
       </div>
       </div>
     </div>
 
+
+        
+              

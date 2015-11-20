@@ -3,9 +3,6 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 		var user = UserFactory.readUser();
 		$http.defaults.headers.common.user = user;
 
-		$scope.new = false;
-		$scope.visible = false;
-
 		$http({
 			method: 'GET',
 			url: '/newcard'
@@ -17,29 +14,14 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 				$state.go('login');
 			};
 		});
-
-
-	  $scope.showAnswer = function(){
-	    $scope.visible = (!$scope.visible)? true: false;
-	  };
-
-	  $scope.expandLine= function(){
-	  	if($scope.new === false) {
-	  		$scope.new = true
-	  	} else if($scope.new === true) {
-	  		$scope.new = false
-	  	}
-	  }
-
 		
-
 		$scope.addCard = function(){
-			console.log('hello')
+			console.log($scope.newCard)
 			$scope.newCard.user = user;
 			$http.post("/newcard", $scope.newCard).then(function success(response){
 				console.log('goodbye card')
 				$scope.newCard = {};
-				$scope.visible = false;
+				$scope.new = false;
 				console.log($scope.newCard)
 				$http({
 					method: 'GET',
@@ -55,5 +37,9 @@ app.controller('SubjectController', ['$scope', '$location', '$http', '$rootScope
 	}, function error(response){
 		$state.go('login');
 	});
+
+	$scope.expandInput = function(){
+		$scope.new = true;
+	}
 
 }])
