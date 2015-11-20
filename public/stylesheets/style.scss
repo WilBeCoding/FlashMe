@@ -258,11 +258,13 @@ label{
   align-self: center;
 }
 
+.push-right {
+  margin-left: auto;
+}
 
 // Subject Controller Components
 
 @mixin card {
-  width: 656px;
   background-color: #FAFAFA;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -271,16 +273,22 @@ label{
 }
 
 .flashcard  {
+  width: 656px;
   margin-top: 40px;
   button {
     margin-top: 16px;
   }
 }
 
+.allSubjects:first-child {
+  margin-top: 40px;
+}
 
 .subjectCard {
   @include card;
+  width: 512px;
   height: 128px;
+  margin-bottom: 8px;
 }
 
 .cardQuestion {
@@ -296,6 +304,10 @@ label{
   align-self: center;
   height: 128px;
   margin-top: 16px;
+}
+
+.cardTitle {
+	margin: 0px;
 }
 
 .cardGuess {

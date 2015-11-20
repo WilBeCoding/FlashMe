@@ -10,7 +10,6 @@ var expressJwt = require('express-jwt');
 router.use(expressJwt({ secret: "secret" }).unless({ path: ['/login', '/register'] }));
 
 router.post('/login', authenticate, function(req, res, next){
-  console.log("Body of the response:", req.body);
   // Passed authentication!
   var token = jwt.sign({
     username: req.body.email
@@ -25,7 +24,6 @@ router.post('/register', function(req, res, next){
   var hash = bcrypt.hashSync(req.body.password, 8);
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query('SELECT * FROM users WHERE email=$1', [req.body.email], function(err, user){
-      console.log("USER: ", user)
       if(user.rows.length === 0){
         client.query('INSERT INTO users VALUES (default, $1, $2)', [req.body.email, hash], function(err, user){
           var token = jwt.sign({
@@ -44,17 +42,14 @@ router.post('/register', function(req, res, next){
 });
 
 router.get('/newcard', function(req, res, next){
-  console.log("In the GET to /newcard"); // ✅
 
   var user = req.get('user');
 
   pg.connect(process.env.DB_URI, function(err, client, done){
 
     client.query('SELECT * FROM users WHERE email = $1', [user], function(err, result){
-      console.log("The result from the looking up the user by their email", result);
 
       client.query('SELECT * FROM subjects WHERE user_id = $1', [result.rows[0].id], function(err, result){
-        console.log("This will be the subjects if there are any:", result);
 
         if(!result.rows.length){
           res.json({noSubjects:true});
@@ -70,7 +65,6 @@ router.get('/newcard', function(req, res, next){
           var outputObject = {subjects: result.rows};
           client.query(queryString, function(err, result){
             if (err) {
-              console.log("Error in query to DB for cards");
               res.json('No Cards Found');
             }
             outputObject.cards = result.rows;
@@ -115,9 +109,7 @@ router.post('/newcard', function(req, res, next) {
 });
 
 router.post('/subjects', function(req, res, next){
-  console.log("SUBJECTS ROUTE REQ:", req.body);
   var filtered = [req.body.id];
-  console.log("FILTERED: ", filtered);
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query('SELECT * FROM cards WHERE subject_id = $1', filtered, function(err, result){
       var cardsArray = result.rows;
@@ -129,19 +121,26 @@ router.post('/subjects', function(req, res, next){
         cardsArray[i] = t;
       }
       var outputObject = {cards: cardsArray}
-      console.log("ARE THESE CARDS?", result.rows)
       res.json(outputObject);
     })
   })
 });
 
 router.post('/study', function(req, res){
-  console.log("Log in the POST route for /study", req.body.id, req.body.rating);
   pg.connect(process.env.DB_URI, function(err, client, done){
     client.query("UPDATE cards SET rating = $2 WHERE id = $1", [req.body.id, req.body.rating], function(err, result){
       res.end(); // no need for json since we don't need return data... right?
     })
   })
+});
+
+router.post('/cards', function(req, res){
+  console.log("Should be the ID of the subject", req.body.subject);
+  pg.connect(process.env.DB_URI, function(err, client, done){
+    client.query("SELECT * FROM cards WHERE subject_id=$1", [req.body.subject], function(err, result){
+      res.json(result);
+    });
+  });
 });
 
 router.get('/me', function(req, res, next){
