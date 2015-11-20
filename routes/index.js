@@ -4,9 +4,11 @@ var authenticate = require('../utils/authenticate');
 var jwt = require('jsonwebtoken');
 var pg = require('pg');
 var conString = process.env.DB_URI;
+var dotenv = require('dotenv');
 var bcrypt = require('bcrypt');
 var expressJwt = require('express-jwt');
 
+dotenv.load();
 router.use(expressJwt({ secret: process.env.JWT_SECRET }).unless({ path: ['/login', '/register', '/favicon.ico'] }));
 
 router.post('/login', authenticate, function(req, res, next){
