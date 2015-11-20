@@ -1,23 +1,21 @@
 <div class="col-md-6 col-md-offset-4">
   <div class="">
     <div class="flashcard flex-col">
-      <div class="flex-row center">
+      <div class="flex-row center subjectNav">
 
         <div class="qaCard flex-col center">
-          <label class="smaller">Choose Subject
-            <select ng-model='newCard.subject'>
-              <option ng-repeat= "subject in subjects">{{subject.name}}</option>
-            </select>
-          </label>  
+          <label class="smaller">Choose Subject</label>
+          <select ng-model='newCard.subject' class="subjectInput">
+            <option ng-repeat= "subject in subjects">{{subject.name}}</option>
+          </select>
         </div>
         <div class="qaCard flex-col center">
-            <label class="smaller">New Subject
-              <input  ng-model= "newCard.newSubject">
-            </label>
+            <label class="smaller">New Subject</label>
+            <input class="subjectInput" ng-model= "newCard.newSubject">
         </div>
 
       </div>
-      <div class="flex-row center">
+      <div class="flex-row center paper">
         <div class="cardQ">
            <h4>Question</h4>
            <textarea name="question" value="" placeholder="Your question..." ng-model="newCard.question"></textarea>
@@ -31,7 +29,3 @@
       </div>
       </div>
     </div>
-
-
-        
-              
